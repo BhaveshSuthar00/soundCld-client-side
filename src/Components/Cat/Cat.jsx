@@ -3,11 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { IndividualDiv, MainDiv } from "../Home/styleComponents";
 
-const Cart = ({ category }) => {
+const Cart = ({ current }) => {
   const [genres, setGenres] = useState([]);
 
   const tokenResponse = JSON.parse(localStorage.getItem("access_token"));
-  console.log(tokenResponse);
+  // console.log(tokenResponse);
 
   // axios("https://api.spotify.com/v1/browse/categories?locale=sv_US", {
   //   method: "GET",
@@ -35,11 +35,11 @@ const Cart = ({ category }) => {
 
   useEffect(() => {
     axios
-      .get("https://api.spotify.com/v1/browse/categories/toplists", {
+      .get("https://api.spotify.com/v1/browse/categories/toplists/playlists", {
         headers: { Authorization: "Bearer " + tokenResponse },
       })
       .then((res) => {
-        console.log(res.data.href);
+        console.log(res.data);
       })
       .catch((er) => {
         console.log(er.message);
@@ -54,16 +54,16 @@ const Cart = ({ category }) => {
       .then((res) => {
         setGenres(res.data.categories.items);
       });
-  }, [tokenResponse]);
+  }, []);
 
   // console.log(genres);
   // console.log(tracks);
   return (
     <MainDiv>
-      {genres.map((el) => {
+      {genres.map((el, index) => {
         return (
           <>
-            <IndividualDiv>
+            <IndividualDiv key={index}>
               <img src={el.icons[0].url} alt="" className="cat-image" />
               <p>{el.name}</p>
             </IndividualDiv>

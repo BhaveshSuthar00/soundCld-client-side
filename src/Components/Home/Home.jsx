@@ -7,14 +7,14 @@ const Home = () => {
   let cat = ["Workout", "Party", "Chill", "Relax", "Sleep", "Study"];
   return (
     <div>
-      {cat.map((el) => {
+      {cat.map((el, index) => {
         return (
-          <div className="Main-div">
+          <div className="Main-div" key={index}>
             <HeaderTitleDiv>
               <h3>{el}</h3>
               <p>Popular playlists from the SoundCloud community</p>
             </HeaderTitleDiv>
-            <Cat current={el} />
+            <Cat current={el} key={index} />
           </div>
         );
       })}
