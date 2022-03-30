@@ -3,64 +3,28 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { IndividualDiv, MainDiv } from "../Home/styleComponents";
 
-const Cart = ({ current }) => {
-  const [genres, setGenres] = useState({selectedGenre: '', listOfGenresFromAPI: []});
-  const [playlist, setPlaylist] = useState({selectedPlaylist: '', listOfPlaylistFromAPI: []});
-  const [tracks, setTracks] = useState({selectedTrack: '', listOfTracksFromAPI: []});
-  const [trackDetail, setTrackDetail] = useState(null);
-
-  const tokenResponse = JSON.parse(localStorage.getItem("access_token"));
-  // console.log(tokenResponse);
-
-  // axios("https://api.spotify.com/v1/browse/categories?locale=sv_US", {
-  //   method: "GET",
-  //   headers: { Authorization: "Bearer " + tokenResponse },
-  // }).then((genreResponse) => {
-  //   setGenres({
-  //     // selectedGenre: genres.selectedGenre,
-  //     listOfGenresFromAPI: genreResponse.data.categories.items,
-  //   });
-  // });
-
-  // playlist categories function
-  // axios(
-  //   `https://api.spotify.com/v1/playlists/${playlist.selectedPlaylist}/tracks?limit=10`,
-  //   {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: "Bearer " + tokenResponse,
-  //     },
-  //   }
-  // ).then((tracksResponse) => {
-  //   setTracks({
-  //     selectedTrack: tracks.selectedTrack,
-  //     listOfTracksFromAPI: tracksResponse.data.items,
-  //   });
-  // });
+const Cart = () => {
+  const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://api.spotify.com/v1/browse/categories/toplists/playlists", {
-        headers: { Authorization: "Bearer " + tokenResponse },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((er) => {
-        console.log(er.message);
-      });
+    getData();
   }, []);
 
-  // console.log(genres);
-  // console.log(tracks);
+  const getData = () => {
+    axios.get("http://localhost:8080/tracks").then((res) => {
+      setTracks(res.data);
+     
+    });
+  };
+
   return (
     <MainDiv>
-      {[].map((el, index) => {
+      {tracks.map((el, index) => {
         return (
           <>
             <IndividualDiv key={index}>
-              <img src={el.icons[0].url} alt="" className="cat-image" />
-              <p>{el.name}</p>
+              <img src={el.image} alt="" className="cat-image" />
+              <p>{el.title}</p>
             </IndividualDiv>
           </>
         );

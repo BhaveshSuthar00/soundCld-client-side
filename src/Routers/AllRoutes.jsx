@@ -8,7 +8,6 @@ const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-
       <Route path="/cat" element={<Cat />} />
       <Route path="/searchpage/:id" element={<SearchPage />} />
     </Routes>

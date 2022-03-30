@@ -4,5 +4,29 @@
 .Main-div {
   /* width: 80%; */
   margin: auto;
-  margin-top: 100px;
+  margin-top: 80px;
+}
+.playlist-div {
+  background-color: teal;
+  width: 70%;
+  margin-left: 50px;
+}
+.Head-div {
+  display: flex;
+}
+.Listening-History {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 250px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 100px; /* Stay at the top */
+  right: 100px;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  background-color: teal;
+}
+hr.vertical {
+  height: 100%;
+  width: 0;
+  border: 1px solid black;
 }
