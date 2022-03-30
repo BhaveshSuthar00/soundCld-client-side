@@ -10,16 +10,17 @@ const MainDiv = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 12fr);
   justify-content: space-between;
- // background-color: teal;
-  width: 80%;
+  // background-color: teal;
+  width: 90%;
 `;
 
 const IndividualDiv = styled.div`
   margin-top: 30px;
+  margin-left: 15px;
 `;
 const HeaderTitleDiv = styled.div`
   text-align: left;
-  margin-left: 110px;
+  margin-left: 50px;
 `;
 
 const MainDivHome = styled.div`

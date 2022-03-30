@@ -13,8 +13,8 @@ function App() {
   // const [trackDetail, setTrackDetail] = useState(null);
 
   const spotify = {
-    ClientId: '37816fbbd4124862afb5dd66fe618ab9',
-    ClientSecret: 'd7f1a8d7b53b417e83675ea60abb0a8b',
+    ClientId: 'b55be9ce4166448f825c09159f8169c2',
+    ClientSecret: '83633371899e418ea7244b2c70ad53e',
   }
   useEffect(() =>{
     axios('https://accounts.spotify.com/api/token', {
