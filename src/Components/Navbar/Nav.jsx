@@ -76,14 +76,13 @@ const WrapperDiv = styled.div`
 `
 const AbosoluteDiv = styled.div`
     background-color: whitesmoke;
-    position: fixed;
-    top: 60px;
+    position: absolute;
+    top: 0;
     left: 1;
-    right: 16%;
+    right: 9%;
     width: 10%;
     color: black;
     padding-bottom: 10px;
-    /* height: 140px; */
     font-size: 21px;
     &>ul {
         list-style-type: none;
@@ -92,7 +91,6 @@ const AbosoluteDiv = styled.div`
     }
 `
 const WrapperAbosoluteDiv = styled.div`
-    /* height: 1800px; */
     width : 100%;
     position: relative;
 `
