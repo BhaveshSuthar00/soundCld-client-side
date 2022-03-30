@@ -1,21 +1,25 @@
-import axios from 'axios'
-import React, {useState, useEffect} from 'react'
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import Cart from "../Cart/Cart";
+import { HeaderTitleDiv } from "./styleComponents";
 
 const Home = () => {
-  
-  // let cat = ['party', 'pop', 'hip hop']
+  let cat = ["Workout", "Party", "Chill", "Relax", "Sleep", "Study"];
   return (
     <div>
-      
-      {/* {cat.map((el)=>{
-        return <div>
-            <h1>{el}</h1>
-            <p>Popular playlists from the SoundCloud community</p>
-          <Cart current={el} />
-        </div>
-      })} */}
+      {cat.map((el) => {
+        return (
+          <div className="Main-div">
+            <HeaderTitleDiv>
+              <h3>{el}</h3>
+              <p>Popular playlists from the SoundCloud community</p>
+            </HeaderTitleDiv>
+            <Cart current={el} />
+          </div>
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
