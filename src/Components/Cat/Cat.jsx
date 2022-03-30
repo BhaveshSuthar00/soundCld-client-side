@@ -40,11 +40,11 @@ const Cart = ({ current }) => {
 
   useEffect(() => {
     axios
-      .get("https://api.spotify.com/v1/browse/featured-playlists", {
+      .get("https://api.spotify.com/v1/browse/categories/toplists/playlists", {
         headers: { Authorization: "Bearer " + tokenResponse },
       })
-      .then(({data}) => {
-        console.log(data);
+      .then((res) => {
+        console.log(res);
       })
       .catch((er) => {
         console.log(er.message);

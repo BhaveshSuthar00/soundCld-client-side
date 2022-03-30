@@ -1,47 +1,97 @@
 import styled from 'styled-components'
 
 const Nav = styled.nav`
-    width: 85%;
-    padding: 0 7.4%;
+    width: 90%;
+    height: 100%;
     margin: auto;
-    background-color: #333333;
     color: whitesmoke;
-    border: 1px solid black;
-    position: sticky;
-    top : 0;
-    padding-top: 0.2%;
-    padding-bottom: 0.2%;
     font-size:  20px;
     line-height: 1.5;
     display: grid;
-    grid-template-columns: 30% 40% 20%;
+    overflow: hidden;
+    grid-template-columns: 30% 40% 30%;
     gap : 0.5;
-    &>div {
-        padding: 0.7%;
-        cursor: pointer;
-        margin-right: 2%;
-        display: flex;
-        justify-content: space-between;
+    & a{
+        text-decoration: none;
+        color: white;
     }
-    &>div:first-child>div:first-child {
-        width: 30%;
+    position: relative;
+    &>div {
+        cursor: pointer;
+        /* margin-right: 2%; */
         display: flex;
         justify-content: space-evenly;
     }
-    &>div:nth-child(2)>div{
-        width: 100%;
+    &>div:first-child {
+        &>div{
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
     }
-    &>div:nth-child(2)>div>input{
-        background-color: whitesmoke;
-        border-radius: 8px;
-        border: none;
-        font-size: 21px;
-        padding-left: 3%;
-        outline: none;
-        width: 100%;
+    &>div:nth-child(2){
+        height: 100%;
+        &>form {
+            width: 98%;
+            padding: 0 0 0 1%;
+            background-color: white;
+            border-radius: 8px;
+            height: 100%;
+        &>input {
+            border: none;
+            font-size: 18px;
+            outline: none;
+            height: 80%;
+            width: 88%;
+        }
+        &>button {
+            border: none;
+            font-size: 21px;
+            background-color: white;
+            outline: none;
+            width: 10%;
+            height: 100%;
+            cursor: pointer;
+            &>svg {
+                /* height: 100%; */
+                background-color: white;
+                /* width: 100%; */
+                margin-top: 5%;
+                background-color:white;
+            }
+        }
+        }
     }
     &>div:last-child {
         width: 100%;
     }
+    `
+const WrapperDiv = styled.div`
+    width: 100%;
+    padding: 1% 0;
+    background-color: #333333;
+    /* height: 50px; */
+    position: sticky;
+    top: 0;
 `
-export {Nav}
+const AbosoluteDiv = styled.div`
+    background-color: whitesmoke;
+    position: absolute;
+    top: 0;
+    left: 1;
+    right: 9%;
+    width: 10%;
+    color: black;
+    padding-bottom: 10px;
+    font-size: 21px;
+    &>ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+`
+const WrapperAbosoluteDiv = styled.div`
+    width : 100%;
+    position: relative;
+`
+export {Nav, WrapperDiv, AbosoluteDiv, WrapperAbosoluteDiv} 
