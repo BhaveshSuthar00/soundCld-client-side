@@ -1,4 +1,5 @@
 import axios from "axios";
+import "../Home/home.css"
 import React, { useState, useEffect } from "react";
 import Cat from "../Cat/Cat";
 import { HistoryTracks } from "./History";
