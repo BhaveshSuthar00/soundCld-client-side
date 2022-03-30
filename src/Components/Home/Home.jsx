@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import Cart from "../Cart/Cart";
+import Cat from "../Cat/Cat"
 import { HeaderTitleDiv } from "./styleComponents";
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
               <h3>{el}</h3>
               <p>Popular playlists from the SoundCloud community</p>
             </HeaderTitleDiv>
-            <Cart current={el} />
+            <Cat current={el} />
           </div>
         );
       })}
