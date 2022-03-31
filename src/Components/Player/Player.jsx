@@ -43,8 +43,8 @@ const Player = () => {
   useEffect(() => {
     axios.get('https://soundcloud-serverside.herokuapp.com/').then((response) => {
       // console.log(response);
-      localStorage.setItem('click', JSON.stringify(response.data));
-      console.log(response.data);
+      // localStorage.setItem('click', JSON.stringify(response.data));
+     
       // setData(response.data);
     })
   }, [])
