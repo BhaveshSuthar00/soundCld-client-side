@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleSearchSubmit = (e)=> {
     e.preventDefault();
     console.log(searchArtist)
-    history(`/searchpage/${searchArtist}`)
+    history(`/searchpage/everything?q=${searchArtist}`)
   };
   return (
     <>
