@@ -2,7 +2,6 @@ import './App.css';
 import AllRoutes from './Routers/AllRoutes';
 import Navbar from './Components/Navbar/Navbar'
 import axios from 'axios'
-import song1 from './Music/song1.mp3';
 import {useState, useEffect} from 'react'
 import Player from './Components/Player/Player';
 function App() {
@@ -58,8 +57,7 @@ function App() {
     <div className="App">
       <Navbar />
       <AllRoutes />
-      <Player
-        />
+      <Player />
     </div>
   );
 }
