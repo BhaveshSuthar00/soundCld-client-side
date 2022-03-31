@@ -1,50 +1,11 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import ReactJkMusicPlayer from 'react-jinke-music-player'
 import 'react-jinke-music-player/assets/index.css'
 import song1 from '../../Music/song1.mp3'
 import song2 from '../../Music/song2.mp3'
 import song3 from '../../Music/song3.mp3'
-// http://localhost:8080?cateory=workout
-// const category = ['workout', 'party']
-// const subcategory = [[],[]];
-// const songs = [
-//   {
-//     name: "Despacito",
-//     singer: "Luis Fonsi",
-//     cover:
-//     "http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg",
-//     musicSrc:
-//     "http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3",
-//       category : [
-//         'workout', 'bestfeelings'
-//       ]
-//   }
-// ]
-// const playlists = [
-//   {
-//     'workout' : [
-//       {
-//       name: "Despacito",
-//       singer: "Luis Fonsi",
-//       cover:
-//       "http://res.cloudinary.com/alick/image/upload/v1502689731/Despacito_uvolhp.jpg",
-//       musicSrc:
-//       "http://res.cloudinary.com/alick/video/upload/v1502689683/Luis_Fonsi_-_Despacito_ft._Daddy_Yankee_uyvqw9.mp3",
-//         category : 'workout',
-//         subcategory : 'best feelings'
-//       }
-//     ],
-//   },
-//   {
-//     'party' : [
-//       {
-
-//       }, {
-        
-//       }
-//     ]
-//   }
-// ]
+// https://soundcloud-serverside.herokuapp.com/ => to all the route songs
+import axios from 'axios'
 const audioLists = [
   {
     name: "Despacito",
@@ -69,17 +30,27 @@ const audioLists = [
     musicSrc: song2
   },
   {
-    name: "song1",
-    singer: "song1",
+    name: "jeeven",
+    singer: "bhavesh suthar",
     cover:
       "https://res.cloudinary.com/ehsanahmadi/image/upload/v1573758778/Sirvan-Khosravi-Dorost-Nemisham_glicks.jpg",
-    musicSrc: song1
+    musicSrc: 'https://res.cloudinary.com/soundcloud-api-image/video/upload/v1648733055/1648711980107_hn7gly.mp3'
   }
 ];
 const Player = () => {
+  let localstr = JSON.parse(localStorage.getItem('click')) || [];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('https://soundcloud-serverside.herokuapp.com/').then((response) => {
+      // console.log(response);
+      localStorage.setItem('click', JSON.stringify(response.data));
+      console.log(response.data);
+      // setData(response.data);
+    })
+  }, [])
   return (
     <div>
-      <ReactJkMusicPlayer defaultVolume={0.5} theme={'hidden'} audioLists={audioLists} mode={'full'} preload={false} showDownload={false}/>
+      <ReactJkMusicPlayer defaultVolume={0.5} theme={'dark'} audioLists={localstr} mode={'full'} preload={false} showDownload={false}/>
     </div>
   )
 }
