@@ -1,29 +1,27 @@
-import axios from 'axios';
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { Wrapper } from './Search'
+import LeftSide from './LeftSide/LeftSide'
+import RightSide from './RightSide/RightSide'
 const SearchPage = () => {
   const {id} = useParams();
-  const spotify = {
-    ClientId: '37816fbbd4124862afb5dd66fe618ab9',
-    ClientSecret: 'd7f1a8d7b53b417e83675ea60abb0a8b',
-  }
-  const token = JSON.parse(localStorage.getItem('access_token'));
   useEffect(() => {
-    axios.get(`https://api.spotify.com/v1/search?q=${id}&type=album,track`, {
-      // method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    }).then((response) => {
-      console.log(response);
-    }).catch((err) => {
-      console.log(err);
-    })
-    return () => {
-      
-    }
+    
   }, [])
-  
   return (
-    <div>SearchPage {id}</div>
+    <div style={{backgroundColor : '#f4f4f4'}}>
+      <Wrapper>
+        <div>Search Results "{id}"</div>
+        <div>
+          <div>
+            <LeftSide />
+          </div>
+          <div>
+            <RightSide />
+          </div>
+        </div>
+      </Wrapper>
+    </div>
   )
 }
 
