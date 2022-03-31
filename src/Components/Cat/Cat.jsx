@@ -6,15 +6,7 @@ import { IndividualDiv, MainDiv } from "../Home/styleComponents";
 const Cart = () => {
   const [tracks, setTracks] = useState([]);
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    axios.get("http://localhost:8080/tracks").then((res) => {
-      setTracks(res.data);
-    });
-  };
+  useEffect(() => {}, []);
 
   const handleSaved = () => {
     console.log("here");
