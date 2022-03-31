@@ -13,8 +13,11 @@ const Cart = () => {
   const getData = () => {
     axios.get("http://localhost:8080/tracks").then((res) => {
       setTracks(res.data);
-     
     });
+  };
+
+  const handleSaved = () => {
+    console.log("here");
   };
 
   return (
@@ -22,7 +25,7 @@ const Cart = () => {
       {tracks.map((el, index) => {
         return (
           <>
-            <IndividualDiv key={index}>
+            <IndividualDiv key={index} onClick={handleSaved}>
               <img src={el.image} alt="" className="cat-image" />
               <p>{el.title}</p>
             </IndividualDiv>
