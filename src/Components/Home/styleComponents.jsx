@@ -12,6 +12,9 @@ const MainDiv = styled.div`
   justify-content: space-between;
   // background-color: teal;
   width: 90%;
+  & > div:hover {
+    cursor: pointer;
+  }
 `;
 
 const IndividualDiv = styled.div`
