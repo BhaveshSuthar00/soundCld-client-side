@@ -1,10 +1,6 @@
-import axios from 'axios'
 import React, {useState, useEffect, useRef} from 'react'
-import { RightWrapper } from './Right'
-import CardRight from './CardRight';
-import CdPr from './bubble.svg'
-// import Image from '../../../Assets/Eater-1s-200px.svg'
-const RightSide = ({page, query}) => {
+import axios from 'axios'
+const PlaylistRight = ({query, page}) => {
   const unMountingComponent = useRef(true)
   const [singerData, setSingerData ] = useState([]);
   const getData = async (query) => {
@@ -29,24 +25,9 @@ const RightSide = ({page, query}) => {
       unMountingComponent.current = false;
     })
   }, [query,page]);
-  
-  if(singerData.length === 0) {
-    return <div>
-      <div style={{margin : 'auto' , width : '100%'}}>
-        <img src={CdPr} alt="" />
-      </div>
-    </div>
-  }
-
   return (
-    <RightWrapper>
-      {
-        singerData.map((elem, i) =>{
-          return <CardRight key={i} elem={elem} index={i} />
-        })
-      }
-    </RightWrapper>
+    <div>PlaylistRight</div>
   )
 }
 
-export default RightSide
+export default PlaylistRight

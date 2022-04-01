@@ -5,7 +5,6 @@ import { ChangeSong } from "../../Contexts/Status";
 
 const Player = () => {
   let localstr = JSON.parse(localStorage.getItem("click")) || [];  
-  console.log(localstr)
   const {statusChange , handleStatus2} = useContext(ChangeSong)
   
   return (
