@@ -14,7 +14,7 @@ const Home = ({handleStatus, status}) => {
         <div>
           <div className="Main-div">
             <HeaderTitleDiv>
-              <h3>Top</h3>
+              <h3>Top category</h3>
               <p>Popular playlists from the SoundCloud community</p>
             </HeaderTitleDiv>
             <div id="elements-data">
