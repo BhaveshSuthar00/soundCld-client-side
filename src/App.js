@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Player from './Components/Player/Player';
 function App() {
   const [status, setStatus] = useState(false)
-  const handleStatus = () =>{
+  const handleStatus = () => {
     setStatus(!status)
   }
   return (
