@@ -73,7 +73,7 @@ export const Top = ({handleStatus}) => {
       </div>
       <div>
         <img onClick={()=>{handleSongPlaylist('pop')}} src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pop-album-art-design-template-905e52dee4423a5f33b0c508665cf7bf_screen.jpg?ts=1598362553" alt="" />
-        <p>pop</p>
+        <p><Link to='/'>classical</Link></p>
       </div>
     </>
   );
