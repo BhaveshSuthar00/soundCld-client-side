@@ -8,7 +8,7 @@ export const HistoryTracks = () => {
     newData.push(data1[i]);
   }
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
