@@ -4,11 +4,15 @@ export const HistoryTracks = () => {
   const data1 = data[0];
   const newData = [];
 
-  for (let i = 0; i < 5; i++) {
-    newData.push(data1[i]);
+  try {
+    for (let i = 0; i < 5; i++) {
+      newData.push(data1[i]);
+    }
+  } catch (er) {
+    console.log(er);
   }
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
