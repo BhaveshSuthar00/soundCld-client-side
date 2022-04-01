@@ -1,13 +1,14 @@
 export const HistoryTracks = () => {
   const data = JSON.parse(localStorage.getItem("click")) || [];
 
+  const data1 = data[0];
   const newData = [];
 
   for (let i = 0; i < 5; i++) {
-    newData.push(data[0][i]);
+    newData.push(data1[i]);
   }
 
-  console.log(newData);
+  console.log(data);
 
   return (
     <>
@@ -22,8 +23,7 @@ export const HistoryTracks = () => {
                 <div>
                   <p>{el.name}</p>
                   <p>singer: {el.singer}</p>
-                </div> 
-              
+                </div>
               </div>
               <hr />
             </>

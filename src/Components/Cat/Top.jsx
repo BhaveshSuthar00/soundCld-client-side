@@ -15,16 +15,6 @@ export const Top = ({ handleStatus }) => {
   }, []);
 
   const getData = () => {
-    // axios
-    //   .get("https://soundcloud-serverside.herokuapp.com/")
-    //   .then(({ data }) => {
-    //     const finalData = data.filter((e) => {
-    //       if (e.playlist[0] === "top100") {
-    //         return e;
-    //       }
-    //     });
-    //     setToptracksData(finalData);
-    //   });
     axios
       .get("https://soundcloud-serverside.herokuapp.com/api/category/all")
       .then((response) => {
@@ -49,9 +39,9 @@ export const Top = ({ handleStatus }) => {
       // console.log(data, category.rock);
       cat = category.rock;
     }
-    if (data === "jezz") {
+    if (data === "jazz") {
       // console.log(data, category.jezz);
-      cat = category.jezz;
+      cat = category.jazz;
     }
     while (dataLocalStroage.length > 0) {
       dataLocalStroage.pop();
@@ -95,7 +85,7 @@ export const Top = ({ handleStatus }) => {
       <ElementDiv>
         <img
           onClick={() => {
-            handleSongPlaylist("jezz");
+            handleSongPlaylist("jazz");
           }}
           src="https://brainpickers.co.uk/img/game-icons/jazz-song-challenge.png"
           alt=""
