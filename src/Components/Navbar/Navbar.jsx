@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { AbosoluteDiv, Nav, WrapperAbosoluteDiv, WrapperDiv } from './Nav'
+import { AbosoluteDiv, Nav, WrapperDiv } from './Nav'
 import { useNavigate, Link}  from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
 import { FiMoreHorizontal } from 'react-icons/fi';
@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleSearchSubmit = (e)=> {
     e.preventDefault();
     console.log(searchArtist)
-    history(`/searchpage/${searchArtist}`)
+    history(`/searchpage/everything?q=${searchArtist}`)
   };
   return (
     <>
@@ -50,23 +50,21 @@ const Navbar = () => {
             Sign in
         </div>
         <div className="Last_div_menu" onClick={()=> setBoxState(!boxState)}>
-          <div>
+          <div className="Last_div_m">
             <FiMoreHorizontal />
+            {!boxState ? null : 
+            <AbosoluteDiv>
+              <ul>
+                <li>login out</li>
+              </ul>
+            </AbosoluteDiv>
+            }
 
           </div>
         </div>
       </div>
     </Nav>
     </WrapperDiv>
-    <WrapperAbosoluteDiv>
-          {!boxState ? null : 
-          <AbosoluteDiv>
-            <ul>
-            <li>login out</li>
-          </ul>
-          </AbosoluteDiv>
-          }
-    </WrapperAbosoluteDiv>
     </>
   )
 }

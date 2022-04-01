@@ -71,15 +71,16 @@ const WrapperDiv = styled.div`
     padding: 1% 0;
     background-color: #333333;
     /* height: 50px; */
+    z-index: 2;
     position: sticky;
     top: 0;
 `
 const AbosoluteDiv = styled.div`
     background-color: whitesmoke;
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 8.2%;
     left: 1;
-    right: 9%;
+    right: 8%;
     width: 10%;
     color: black;
     padding-bottom: 10px;
@@ -90,8 +91,4 @@ const AbosoluteDiv = styled.div`
         padding: 0;
     }
 `
-const WrapperAbosoluteDiv = styled.div`
-    width : 100%;
-    position: relative;
-`
-export {Nav, WrapperDiv, AbosoluteDiv, WrapperAbosoluteDiv} 
+export {Nav, WrapperDiv, AbosoluteDiv} 
