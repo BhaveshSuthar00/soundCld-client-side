@@ -38,19 +38,14 @@ const audioLists = [
   }
 ];
 const Player = () => {
+  const [data, setData] = useState(false) || JSON.parse(localStorage.getItem('status'));
   let localstr = JSON.parse(localStorage.getItem('click')) || [];
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios.get('https://soundcloud-serverside.herokuapp.com/').then((response) => {
-      // console.log(response);
-      // localStorage.setItem('click', JSON.stringify(response.data));
-     
-      // setData(response.data);
-    })
-  }, [])
+  useEffect(()=>{
+    
+  }, [data])
   return (
     <div>
-      <ReactJkMusicPlayer defaultVolume={0.5} theme={'dark'} audioLists={localstr} mode={'full'} preload={false} showDownload={false}/>
+      <ReactJkMusicPlayer defaultVolume={0.5} theme={'dark'} audioLists={localstr[0]} mode={'full'} preload={false} showDownload={false}/>
     </div>
   )
 }
