@@ -1,24 +1,32 @@
 import axios from "axios";
+import "../Home/home.css";
 import React, { useState, useEffect } from "react";
-import Cart from "../Cart/Cart";
-import { HeaderTitleDiv } from "./styleComponents";
 
-const Home = () => {
-  let cat = ["Workout", "Party", "Chill", "Relax", "Sleep", "Study"];
+import { HistoryTracks } from "./History";
+import { HeaderTitleDiv, HomeDiv } from "./styleComponents";
+import { Top } from "../Cat/Top";
+
+const Home = ({handleStatus, status}) => {
+  let cat = ["Top", "Party", "Chill", "Bollywood", "Relax", "Workout"];
   return (
-    <div>
-      {cat.map((el) => {
-        return (
+    <>
+      <HomeDiv>
+        <div>
           <div className="Main-div">
             <HeaderTitleDiv>
-              <h3>{el}</h3>
+              <h3>Top category</h3>
               <p>Popular playlists from the SoundCloud community</p>
             </HeaderTitleDiv>
-            <Cart current={el} />
+            <div id="elements-data">
+              <Top handleStatus={handleStatus} status={status}/>
+            </div>
           </div>
-        );
-      })}
-    </div>
+        </div>
+        <div className="Listening-History">
+          <HistoryTracks />
+        </div>
+      </HomeDiv>
+    </>
   );
 };
 
