@@ -22,4 +22,11 @@ const MainDivHome = styled.div`
   width: 80%;
   margin: auto;
 `;
-export { HeaderTitleDiv, MainDivHome, HomeDiv };
+const ElementDiv = styled.div`
+  & > img {
+    width: 200px;
+    height: 250px;
+    border-radius: 5px;
+  }
+`;
+export { HeaderTitleDiv, MainDivHome, HomeDiv, ElementDiv };
