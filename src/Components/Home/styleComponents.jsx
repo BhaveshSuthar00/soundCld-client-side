@@ -23,6 +23,9 @@ const MainDivHome = styled.div`
   margin: auto;
 `;
 const ElementDiv = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
   & > img {
     width: 200px;
     height: 250px;

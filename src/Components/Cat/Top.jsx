@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 import { ElementDiv } from "../Home/styleComponents";
 
 export const Top = ({ handleStatus }) => {
-  const [topTracksdata, setToptracksData] = useState([]);
-  // const [pop, setPop] = useState([]);
-  // const [rock, setrock] = useState([]);
-  // const [jezz, setjezz] = useState([]);
-  let dataLocalStroage = JSON.parse(localStorage.getItem("click")) || [];
-  // const [classical, setClassical] = useState([]);
+  let dataLocalStroage = [];
   const [category, setCategory] = useState({
     pop: [],
     rock: [],
@@ -42,19 +37,20 @@ export const Top = ({ handleStatus }) => {
   const handleSongPlaylist = (data) => {
     let cat = [];
     if (data === "pop") {
-      console.log(data, category.pop);
+      // console.log(data, category.pop);
       cat = category.pop;
+      // console.log("catdata", cat);
     }
     if (data === "classical") {
-      console.log(data, category.classical);
+      // console.log(data, category.classical);
       cat = category.classical;
     }
     if (data === "rock") {
-      console.log(data, category.rock);
+      // console.log(data, category.rock);
       cat = category.rock;
     }
     if (data === "jezz") {
-      console.log(data, category.jezz);
+      // console.log(data, category.jezz);
       cat = category.jezz;
     }
     while (dataLocalStroage.length > 0) {
