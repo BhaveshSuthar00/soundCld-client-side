@@ -16,10 +16,10 @@ const SearchPage = () => {
         <div>Search Results "{query2}"</div>
         <div>
           <div>
-            <LeftSide query={query2} page={id}/>
+            <LeftSide query={query2} page={id} />
           </div>
           <div>
-            <RightSide query={query2} page={id} />
+            <RightSide query={query2} page={id}  />
           </div>
         </div>
       </Wrapper>

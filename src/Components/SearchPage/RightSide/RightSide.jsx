@@ -12,7 +12,7 @@ const RightSide = ({page, query}) => {
       let data = await response.data;
       data = data.filter((el)=>{
 
-        if(el.singer.toLowerCase() === query.toLowerCase()) return true;
+        if(el.singer.toLowerCase() === query.toLowerCase() || el.name.toLowerCase() === query.toLowerCase()) return true;
         else return false;
       })
       setSingerData(data)
@@ -23,9 +23,11 @@ const RightSide = ({page, query}) => {
   useEffect(() => {
     getData(query)
   }, [query,page]);
+  
   if(singerData.length === 0) {
     return <>Loading...</>
   }
+
   return (
     <RightWrapper>
       {
