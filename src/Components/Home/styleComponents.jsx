@@ -32,14 +32,14 @@ const ElementDiv = styled.div`
     border-radius: 5px;
   }
 `;
-const SongPoster = styled.div`
-    background-image : url(${(props) => props.imgSrc || "https://picsum.photos/200"});  
-    background-size : contain;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100px;  
-    width:100px;  
+// const SongPoster = styled.div`
+//     background-image : url(${(props) => props.imgSrc || "https://picsum.photos/200"});  
+//     background-size : contain;
+//     display:flex;
+//     justify-content:center;
+//     align-items:center;
+//     height:100px;  
+//     width:100px;  
     
-`;
+// `;
 export { HeaderTitleDiv, MainDivHome, HomeDiv, ElementDiv };
