@@ -10,7 +10,7 @@ const Player = () => {
     useState(false) || JSON.parse(localStorage.getItem("status"));
 
   let localstr = JSON.parse(localStorage.getItem("click")) || [];
-
+  
   useEffect(() => {}, [data]);
   return (
     <div>
