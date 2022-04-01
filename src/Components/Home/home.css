@@ -1,0 +1,49 @@
+body {
+  background-color: rgb(218, 200, 200)
+}
+
+.Main-div {
+  /* width: 80%; */
+  margin: auto;
+  margin-top: 80px;
+}
+
+
+.Listening-History {
+  /* height: 100%; */
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  right: 100px;
+  overflow-x: hidden;
+  padding-top: 20px;
+  border: 1px solid beige;
+  /* background-color: teal; */
+}
+
+img {
+  width: 200px;
+  height: 250px;
+}
+
+#elements-data {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.history-div {
+  margin-top: 15px;
+  height: 50px;
+  display: flex;
+  padding: 1% 0;
+  overflow : hidden;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+.history-div>img {
+  height: 35px;
+  width: 35px;
+  margin-left: 15px;
+}

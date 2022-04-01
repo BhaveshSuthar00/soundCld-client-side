@@ -1,10 +1,22 @@
-import React from 'react'
-import { Nav } from './Nav'
-
+import React, {useState} from 'react'
+import { AbosoluteDiv, Nav, WrapperDiv } from './Nav'
+import { useNavigate, Link}  from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
 import { FiMoreHorizontal } from 'react-icons/fi';
+import { BiSearchAlt } from 'react-icons/bi';
+
 const Navbar = () => {
+  const history = useNavigate();
+  const [searchArtist, setSearchArtist] = useState('');
+  const [boxState, setBoxState] = useState(false);
+  const handleSearchSubmit = (e)=> {
+    e.preventDefault();
+    console.log(searchArtist)
+    history(`/searchpage/everything?q=${searchArtist}`)
+  };
   return (
+    <>
+    <WrapperDiv>
     <Nav>
       <div>
         <div>
@@ -12,8 +24,8 @@ const Navbar = () => {
           <BsFillPeaceFill />
           </div>
           <div>
-            Home
-          </div>
+            <Link to="/">Home</Link>
+          </div> 
         </div>
         <div>
           Stream
@@ -23,25 +35,38 @@ const Navbar = () => {
         </div>
       </div>
       <div>
-        <div>
-          <input type="search" placeholder="Search" />
-        </div>
+        <form onSubmit={(e)=>{handleSearchSubmit(e)}}>
+          <input type="text" placeholder="Search" onChange={(e)=>{setSearchArtist(e.target.value)}} />
+          <button type="submit">
+            <BiSearchAlt />
+          </button>
+        </form>
       </div>
       <div>
         <div>
           Upload
         </div>
         <div>
-          <ul>
             Sign in
-          </ul>
         </div>
-        <div>
-          <FiMoreHorizontal />
+        <div className="Last_div_menu" onClick={()=> setBoxState(!boxState)}>
+          <div className="Last_div_m">
+            <FiMoreHorizontal />
+            {!boxState ? null : 
+            <AbosoluteDiv>
+              <ul>
+                <li>login out</li>
+              </ul>
+            </AbosoluteDiv>
+            }
+
+          </div>
         </div>
       </div>
     </Nav>
+    </WrapperDiv>
+    </>
   )
 }
 
-export default Navbar
+export default  Navbar;

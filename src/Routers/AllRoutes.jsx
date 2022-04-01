@@ -1,13 +1,15 @@
-import {Routes, Route} from 'react-router-dom'
-import Home from '../Components/Home/Home'
-import Cart from '../Components/Cart/Cart'
-const AllRoutes = () => {
-    return (
-        <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/cart' element={<Cart />} />
-        </Routes>
-    )
-}
+import { Routes, Route } from "react-router-dom";
+import Home from "../Components/Home/Home";
+import SearchPage from "../Components/SearchPage/SearchPage";
 
-export default AllRoutes
+const AllRoutes = ({handleStatus, status}) => {
+  return (
+    <Routes>
+      <Route path="/" element={<Home handleStatus={handleStatus} status={status} />} />
+
+      <Route path="/searchpage/:id" element={<SearchPage />} />
+    </Routes>
+  );
+};
+
+export default AllRoutes;
