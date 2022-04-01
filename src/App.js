@@ -58,8 +58,14 @@ function App() {
     <div className="App">
       <Navbar />
       <AllRoutes />
-      <div>Hello Friends</div>
-      <Card />
+      <div style={{ display: "flex" }}>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
     </div>
   );
 }
