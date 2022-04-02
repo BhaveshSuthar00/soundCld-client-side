@@ -1,9 +1,11 @@
 import styledComponents from "styled-components"
 
-const Clickables = styledComponents.div`
+const Clickables = styledComponents.button`
     font-weight : 800;
     font-size : 25px;
     margin : 0.5em;
+    border: none;
+    background: transparent
 `
 
 const NavContainer = styledComponents.div`
@@ -12,9 +14,9 @@ const NavContainer = styledComponents.div`
     display : flex;
 `
 
-export function LibNav() {
+export function LibNav(props) {
     return <NavContainer>
-        <Clickables>Overview</Clickables>
-        <Clickables>Overview</Clickables>
+        <Clickables onClick={() => props.onTabChange('overview')}>Overview</Clickables>
+        <Clickables onClick={() => props.onTabChange('history')}>History</Clickables>
     </NavContainer>
 }

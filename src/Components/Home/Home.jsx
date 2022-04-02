@@ -1,13 +1,20 @@
 import axios from "axios";
 import "../Home/home.css";
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
 import { HistoryTracks } from "./History";
 import { HeaderTitleDiv, HomeDiv } from "./styleComponents";
 import { Top } from "../Cat/Top";
-
-const Home = ({handleStatus, status}) => {
+import { Playlist } from "../Cat/Playlist";
+import { ChangeSong } from "../../Contexts/Status";
+const Home = ({ handleStatus, status }) => {
+  const { handleStatus2 } = useContext(ChangeSong)
   let cat = ["Top", "Party", "Chill", "Bollywood", "Relax", "Workout"];
+  useEffect(() => {
+    let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
+    localPlayer.pop();
+    localStorage.setItem('playerAble', JSON.stringify(localPlayer));
+    handleStatus2();
+  }, [])
   return (
     <>
       <HomeDiv>
@@ -18,7 +25,16 @@ const Home = ({handleStatus, status}) => {
               <p>Popular playlists from the SoundCloud community</p>
             </HeaderTitleDiv>
             <div id="elements-data">
-              <Top handleStatus={handleStatus} status={status}/>
+              <Top />
+            </div>
+            <br />
+            <br />
+            <HeaderTitleDiv>
+              <h3>Top Playlists</h3>
+              <p>Popular playlists from the SoundCloud community</p>
+            </HeaderTitleDiv>
+            <div id="elements-data">
+              <Playlist />
             </div>
           </div>
         </div>

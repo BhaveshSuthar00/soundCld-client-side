@@ -41,7 +41,7 @@ const Nav = styled.nav`
             border: none;
             font-size: 18px;
             outline: none;
-            height: 80%;
+            height: 100%;
             width: 88%;
         }
         &>button {
@@ -70,7 +70,6 @@ const WrapperDiv = styled.div`
     width: 100%;
     padding: 1% 0;
     background-color: #333333;
-    /* height: 50px; */
     z-index: 2;
     position: sticky;
     top: 0;
@@ -78,7 +77,7 @@ const WrapperDiv = styled.div`
 const AbosoluteDiv = styled.div`
     background-color: whitesmoke;
     position: fixed;
-    top: 8.2%;
+    top: 8.4%;
     left: 1;
     right: 8%;
     width: 10%;
@@ -89,6 +88,15 @@ const AbosoluteDiv = styled.div`
         list-style-type: none;
         margin: 0;
         padding: 0;
+
+        &>li {
+            text-align: left;
+            margin-left: 3%;
+            margin-bottom: 1%;
+            &>a {
+                color: black;
+            }
+        }
     }
 `
-export {Nav, WrapperDiv, AbosoluteDiv} 
+export { Nav, WrapperDiv, AbosoluteDiv } 

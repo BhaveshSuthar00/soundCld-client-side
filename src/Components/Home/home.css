@@ -1,11 +1,12 @@
 body {
-  background-color: rgb(218, 200, 200)
+  background-color: whitesmoke
 }
 
 .Main-div {
   /* width: 80%; */
   margin: auto;
   margin-top: 80px;
+  background-color: white;
 }
 
 
@@ -30,6 +31,7 @@ img {
 #elements-data {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
 }
 
 .history-div {
@@ -37,9 +39,10 @@ img {
   height: 50px;
   display: flex;
   padding: 1% 0;
-  overflow : hidden;
+  overflow: hidden;
   text-align: center;
   justify-content: space-evenly;
+  border: 1px solid whitesmoke;
 }
 
 .history-div>img {
