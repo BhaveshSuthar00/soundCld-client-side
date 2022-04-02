@@ -82,13 +82,13 @@ const Signup = () => {
         <div id="terms">
           <p>
             I accept the{" "}
-            <a href="https://soundcloud.com/terms-of-use" target={"_blank"}>
+            <p>
               Terms of Use
-            </a>{" "}
+            </p>{" "}
             and{" "}
-            <a href="https://soundcloud.com/pages/privacy" target={"_blank"}>
+            <p>
               Privacy Policy
-            </a>
+            </p>
           </p>
         </div>
         <div className="title">

@@ -75,8 +75,9 @@ const WrapperDiv = styled.div`
     top: 0;
 `
 const AbosoluteDiv = styled.div`
-    background-color: whitesmoke;
+    background-color: white;
     position: fixed;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     top: 8.4%;
     left: 1;
     right: 8%;

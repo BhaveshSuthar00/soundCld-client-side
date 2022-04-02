@@ -29,20 +29,15 @@ export const Top = () => {
   const handleSongPlaylist = (data) => {
     let cat = [];
     if (data === "pop") {
-      // console.log(data, category.pop);
       cat = category.pop;
-      // console.log("catdata", cat);
     }
     if (data === "classical") {
-      // console.log(data, category.classical);
       cat = category.classical;
     }
     if (data === "rock") {
-      // console.log(data, category.rock);
       cat = category.rock;
     }
     if (data === "jazz") {
-      // console.log(data, category.jezz);
       cat = category.jazz;
     }
     while (dataLocalStroage.length > 0) {
@@ -50,7 +45,10 @@ export const Top = () => {
     }
     dataLocalStroage.push(cat);
     handleStatus2();
-    localStorage.setItem("click", JSON.stringify(dataLocalStroage));
+    let history = JSON.parse(localStorage.getItem('history')) || [];
+    history.push(cat[0])
+    localStorage.setItem('history', JSON.stringify(history));
+    localStorage.setItem("click", JSON.stringify([cat]));
   };
   return (
     <>

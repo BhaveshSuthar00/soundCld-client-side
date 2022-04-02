@@ -1,22 +1,19 @@
-// import { useState } from "react";
-
+import { useEffect,useState, useContext } from "react";
+import { ChangeSong } from "../../Contexts/Status";
 export const HistoryTracks = () => {
-  const data = JSON.parse(localStorage.getItem("click")) || [];
-  // const [boolean, setBoolean] = useState(false);
-
-  const data1 = data[0];
-  const newData = [];
-
-  try {
-    for (let i = 0; i < 5; i++) {
-      newData.push(data1[i]);
-    }
-  } catch (er) {
-    console.log(er);
+  const [newData, setNewData] = useState([]);
+  const {history, handleStatus2 ,handleHistory} = useContext(ChangeSong);
+  // const data = JSON.parse(localStorage.getItem("click")) || [];  
+  let History = JSON.parse(localStorage.getItem("history")) || [];
+  useEffect(()=>{
+    setNewData(History);
+    handleHistory();
+    handleStatus2();
+  },[])
+  
+  if(newData.length === 0){
+    return <></>
   }
-
-  // console.log(data);
-
   return (
     <>
       Listening history

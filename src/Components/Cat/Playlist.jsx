@@ -11,20 +11,13 @@ export const Playlist = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  try {
-    var bollywood = getplayist[0].playlist;
-    var top100 = getplayist[1].playlist;
-    var party = getplayist[3].playlist;
-    var new_release = getplayist[4].playlist;
-    var romance = getplayist[5].playlist;
-    var sad = getplayist[6].playlist;
-    var chill = getplayist[7].playlist;
-    var workout = getplayist[8].playlist;
-    var good_vibes = getplayist[9].playlist;
-  } catch (er) {
-    console.log(er);
-  }
+  // useEffect(()=>{
+    // try {
+      
+    // } catch (er) {
+    //   console.log(er);
+    // }
+  // },[])
 
   const getData = () => {
     axios
@@ -38,10 +31,19 @@ export const Playlist = () => {
   };
 
   const handleSongPlaylist = (data) => {
+    // var bollywood = getplayist[0].playlist;
+      var top100 = getplayist[1].playlist;
+      var party = getplayist[3].playlist;
+      var new_release = getplayist[4].playlist;
+      var romance = getplayist[5].playlist;
+      var sad = getplayist[6].playlist;
+      var chill = getplayist[7].playlist;
+      var workout = getplayist[8].playlist;
+      var good_vibes = getplayist[9].playlist;
     let cat = [];
     if (data === "bollywood") {
       // console.log(data, category.pop);
-      cat = bollywood;
+      cat = getplayist[0].playlist;
       // console.log("catdata", cat);
     }
     if (data === "top100") {
@@ -77,11 +79,10 @@ export const Playlist = () => {
       // console.log(data, category.jezz);
       cat = good_vibes;
     }
-    while (dataLocalStroage.length > 0) {
-      dataLocalStroage.pop();
-    }
+    // while (dataLocalStroage.length > 0) {
+    //   dataLocalStroage.pop();
+    // }
     dataLocalStroage.push(cat);
-    // handleStatus();
     handleStatus2();
     localStorage.setItem("click", JSON.stringify(dataLocalStroage));
   };

@@ -9,7 +9,7 @@ const Player = () => {
     return <></>
   }
   return (
-    <div>
+    <div >
       <ReactJkMusicPlayer
         defaultVolume={0.5}
         theme={"dark"}

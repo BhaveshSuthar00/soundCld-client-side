@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useRef} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { AbosoluteDiv, Nav, WrapperDiv } from './Nav'
 import { useNavigate, Link}  from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <li>Copyright</li>
                 <li>For creators</li>
                 <li>Blog</li>
-                <li>{isLogged ? <Link to='/signup' >Signup</Link> : <p onClick={()=>{
+                <li>{!isLogged ? <Link to='/signup' >Signup</Link> : <p onClick={()=>{
                   handleLogin(false)
                   removeUserName();
                   handleStatus2();

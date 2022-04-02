@@ -27,9 +27,18 @@ export const RenderingStatus  = ({children}) => {
         localStorage.setItem('userName', JSON.stringify(localNane))
         setUserName(null)
     }
+    const [history, setHistory] = useState(false);
+    const handleHistory = () =>{
+        let history = JSON.parse(localStorage.getItem('history')) || [];
+        while(history.length > 5){
+            history.shift();
+        }
+        localStorage.setItem('history', JSON.stringify(history));
+        setHistory(!history);
+    }
     return (
     <>
-        <ChangeSong.Provider value={{handleStatus2, statusChange, handleLogin, isLogged, userName,removeUserName, handleUserName}}>
+        <ChangeSong.Provider value={{history,handleHistory,handleStatus2, statusChange, handleLogin, isLogged, userName,removeUserName, handleUserName}}>
             {children}
             </ChangeSong.Provider>
     </> 
