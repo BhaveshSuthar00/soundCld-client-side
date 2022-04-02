@@ -52,7 +52,7 @@ const Login = ()=> {
           <button>Continue with Google</button>
           <button>Continue with Apple</button>
           <span>or</span>
-          <hr/>
+          <hr className="hr"/>
           <input className='Signup_input' onChange={(e)=>{handeleChange(e)}} type="text" id="email" placeholder="Your email address" />
           <input className='Signup_input' onChange={(e)=>{handeleChange(e)}} id="password" type="text" placeholder="Password" />
           <button >Continue</button>
