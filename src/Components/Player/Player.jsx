@@ -4,7 +4,10 @@ import "react-jinke-music-player/assets/index.css";
 
 const Player = () => {
   let localstr = JSON.parse(localStorage.getItem("click")) || [];  
-  
+  let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
+  if(localPlayer.length === 1) {
+    return <></>
+  }
   return (
     <div>
       <ReactJkMusicPlayer

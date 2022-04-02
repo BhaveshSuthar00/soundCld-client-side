@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect, useContext, useRef} from 'react'
 import { AbosoluteDiv, Nav, WrapperDiv } from './Nav'
 import { useNavigate, Link}  from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
@@ -7,23 +7,17 @@ import { BiSearchAlt } from 'react-icons/bi';
 import { ChangeSong } from "../../Contexts/Status";
 
 const Navbar = () => {
-  const {handleStatus2} = useContext(ChangeSong)
   const history = useNavigate();
-  const [userName, setUserName] = useState('');
+  const {isLogged,statusChange, handleLogin, userName,removeUserName, handleUserName,handleStatus2} = useContext(ChangeSong)
   const [searchArtist, setSearchArtist] = useState('');
   const [boxState, setBoxState] = useState(false);
   const handleSearchSubmit = (e)=> {
     e.preventDefault();
-    console.log(searchArtist)
     history(`/searchpage/everything?q=${searchArtist}`)
   };
   useEffect(()=>{
-    let loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
-    if(loginStatus !== null){
-      setUserName(loginStatus)
-      handleStatus2();
-    }
-  },[])
+    handleUserName();
+  },[statusChange])
   return (
     <>
     <WrapperDiv>
@@ -57,8 +51,8 @@ const Navbar = () => {
           Upload
         </div>
         <div>
-        {userName !== '' ? {userName}  : 
-            "Sign in"
+        {userName !== null ? <p>{userName}</p> : 
+            <Link to='/login' >Sign in</Link>
         }
         </div>
         <div className="Last_div_menu" onClick={()=> setBoxState(!boxState)}>
@@ -67,7 +61,16 @@ const Navbar = () => {
             {!boxState ? null : 
             <AbosoluteDiv>
               <ul>
-                <li>login out</li>
+                <li>About us</li>
+                <li>Legal</li>
+                <li>Copyright</li>
+                <li>For creators</li>
+                <li><a href="">Blog</a></li>
+                <li>{isLogged ? <Link to='/signup' >Signup</Link> : <p onClick={()=>{
+                  handleLogin(false)
+                  removeUserName();
+                  handleStatus2();
+                }}>Log out</p>}</li>
               </ul>
             </AbosoluteDiv>
             }

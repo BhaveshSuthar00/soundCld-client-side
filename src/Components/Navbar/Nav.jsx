@@ -41,7 +41,7 @@ const Nav = styled.nav`
             border: none;
             font-size: 18px;
             outline: none;
-            height: 80%;
+            height: 100%;
             width: 88%;
         }
         &>button {
@@ -78,6 +78,7 @@ const AbosoluteDiv = styled.div`
     background-color: whitesmoke;
     position: fixed;
     top: 8.4%;
+    left: 1;
     right: 8%;
     width: 10%;
     color: black;
@@ -87,6 +88,15 @@ const AbosoluteDiv = styled.div`
         list-style-type: none;
         margin: 0;
         padding: 0;
+
+        &>li {
+            text-align: left;
+            margin-left: 3%;
+            margin-bottom: 1%;
+            &>a {
+                color: black;
+            }
+        }
     }
 `
 export {Nav, WrapperDiv, AbosoluteDiv} 
