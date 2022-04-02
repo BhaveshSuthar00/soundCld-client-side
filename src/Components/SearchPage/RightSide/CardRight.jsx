@@ -13,7 +13,7 @@ const CardRight = ({ elem }) => {
         }
         if(value){
             let empty = [];
-            localStr.push([empty]);
+            localStr.push(empty);
         } else { 
             localStr.push([ele])
         }
