@@ -65,7 +65,7 @@ const Navbar = () => {
                 <li>Legal</li>
                 <li>Copyright</li>
                 <li>For creators</li>
-                <li><a href="">Blog</a></li>
+                <li>Blog</li>
                 <li>{isLogged ? <Link to='/signup' >Signup</Link> : <p onClick={()=>{
                   handleLogin(false)
                   removeUserName();
