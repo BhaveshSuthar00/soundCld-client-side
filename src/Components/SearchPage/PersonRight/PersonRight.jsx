@@ -3,8 +3,8 @@ import axios from 'axios'
 import {PersonWrapper} from './PersonCart'
 import CdPr from '../bubble.svg'
 import { ChangeSong } from "../../../Contexts/Status";
-const PersonRight = ({query, page}) => {
-  const {handleStatus2, statusChange} = useContext(ChangeSong)
+const PersonRight = ({query}) => {
+  const {handleStatus2} = useContext(ChangeSong)
   const unMountingComponent = useRef(true)
   const [followState, setFollow] = useState(false);
   const [singerData, setSingerData ] = useState({});
@@ -36,7 +36,7 @@ const PersonRight = ({query, page}) => {
     return (()=> {
       unMountingComponent.current = false;
     })
-  }, [singerData]);
+  }, [query]);
   const handleLocalStorage = ()=>{
     let array = [];
     array.push(dataLocal)
@@ -57,8 +57,8 @@ const PersonRight = ({query, page}) => {
   }
   return (
     <div>
-        <PersonWrapper onClick={()=> {handleLocalStorage()}}>
-            <div className="img">
+        <PersonWrapper >
+            <div className="img" onClick={()=> {handleLocalStorage()}}>
               <img src={singerData.cover} alt="" />
             </div>
             <div className="text">

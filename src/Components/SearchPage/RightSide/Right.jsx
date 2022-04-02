@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const RightWrapper = styled.div`
     height: 600px;
-    background-color:  #ffc5c57e;
     overflow-y: scroll;
     &::-webkit-scrollbar {
         display: none;
@@ -13,7 +12,6 @@ const RightWrapper = styled.div`
     }
     &>div {
         height: 150px;
-        border: 1px solid #dbdbdb;
         display: flex;
         width: 99%;
         padding: 0.5% 0;

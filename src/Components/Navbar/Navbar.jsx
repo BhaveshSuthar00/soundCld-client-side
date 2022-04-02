@@ -1,12 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { AbosoluteDiv, Nav, WrapperDiv } from './Nav'
 import { useNavigate, Link}  from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { BiSearchAlt } from 'react-icons/bi';
+import { ChangeSong } from "../../Contexts/Status";
 
 const Navbar = () => {
+  const {handleStatus2} = useContext(ChangeSong)
   const history = useNavigate();
+  const [userName, setUserName] = useState('');
   const [searchArtist, setSearchArtist] = useState('');
   const [boxState, setBoxState] = useState(false);
   const handleSearchSubmit = (e)=> {
@@ -14,6 +17,13 @@ const Navbar = () => {
     console.log(searchArtist)
     history(`/searchpage/everything?q=${searchArtist}`)
   };
+  useEffect(()=>{
+    let loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
+    if(loginStatus !== null){
+      setUserName(loginStatus)
+      handleStatus2();
+    }
+  },[])
   return (
     <>
     <WrapperDiv>
@@ -47,7 +57,9 @@ const Navbar = () => {
           Upload
         </div>
         <div>
-            Sign in
+        {userName !== '' ? {userName}  : 
+            "Sign in"
+        }
         </div>
         <div className="Last_div_menu" onClick={()=> setBoxState(!boxState)}>
           <div className="Last_div_m">

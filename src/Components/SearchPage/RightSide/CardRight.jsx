@@ -3,25 +3,31 @@ import React, { useState, useContext } from "react";
 import { MdPauseCircleFilled } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { ChangeSong } from "../../../Contexts/Status";
-const CardRight = ({ elem, index }) => {
-    const {handleStatus2, statusChange} = useContext(ChangeSong)
+const CardRight = ({ elem }) => {
+    const {handleStatus2} = useContext(ChangeSong)
     const [play_pause, setplay_pause] = useState(false);
-    const handleIndex = (ele) =>{
+    const handleIndex = (ele, value) =>{
         let localStr = JSON.parse(localStorage.getItem('click')) || [];
         while(localStr.length!== 0) {
             localStr.pop();
         }
-        localStr.push([ele])
+        if(value){
+            let empty = [];
+            localStr.push([empty]);
+        } else { 
+            localStr.push([ele])
+        }
         localStorage.setItem('click', JSON.stringify(localStr));
         handleStatus2()
     }
     return (
-    <div onClick={()=>{handleIndex(elem)}}>
+    <div>
         <div>
-            <img src={elem.cover} alt="image" />
+            <img src={elem.cover} alt="cover" />
         </div>
         <div className="rightCorner">
             <div className="play_pause_icon" onClick={()=> {
+                handleIndex(elem, play_pause)
                 setplay_pause(!play_pause);
             }}>
             {play_pause === false ?  <AiFillPlayCircle /> : <MdPauseCircleFilled /> }

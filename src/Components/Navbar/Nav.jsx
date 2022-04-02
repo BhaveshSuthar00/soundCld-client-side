@@ -70,7 +70,6 @@ const WrapperDiv = styled.div`
     width: 100%;
     padding: 1% 0;
     background-color: #333333;
-    /* height: 50px; */
     z-index: 2;
     position: sticky;
     top: 0;
@@ -78,8 +77,7 @@ const WrapperDiv = styled.div`
 const AbosoluteDiv = styled.div`
     background-color: whitesmoke;
     position: fixed;
-    top: 8.2%;
-    left: 1;
+    top: 8.4%;
     right: 8%;
     width: 10%;
     color: black;
