@@ -1,0 +1,158 @@
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.heading span{
+  font-size: 15px;
+  color: grey;
+
+}
+
+.heading{
+  line-height: 30px;
+}
+
+.formdata input{
+  margin-top: 5px;
+  width: 92%;
+  border: 1px solid gainsboro;
+}
+
+
+.title button,input{
+  width: 98%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 0px;
+  border-radius: 3px;
+  font-size: 17px;
+  
+}
+.title>span{
+  font-size: 20px;
+  background-color: white;
+  position:relative;
+  
+  top:3px
+}
+button:hover{
+  cursor: pointer;
+}
+
+
+.title>input{
+  margin-top: 15px;
+  border: 1px solid gainsboro;
+  width: 92%;
+}
+hr{
+  color: gainsboro;
+  width: 96%;
+  margin-top: -10px;
+}
+.title>:nth-child(1){
+  background-color:#3578e5;
+  color: white;
+}
+.title>:nth-child(2){
+  background-color: white;
+  border: 1px solid gainsboro;
+}
+.title>:nth-child(3){
+  background-color: black;
+  color: white;
+  
+}
+.title>:last-child{
+  background-color: #ff5500;
+  color: white;
+
+  
+}
+
+.modalContainer {
+  width: 400px;
+  height: 500px;
+  
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  
+}
+
+.modalContainer .title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.titleCloseBtn {
+
+  display: flex;
+  justify-content: flex-end;
+  
+  
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+a{
+  color: #0055dd;
+  text-decoration: none;
+}
+#terms{
+  font-size: 0.8rem;
+  color: rgb(145, 144, 144);
+  line-height: 15px;
+  margin-top: -10px;
+  margin-left: 5px;
+}
+
+
+.modalContainer .body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+
+.modalContainer .footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer .footer button {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 2px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#cancelBtn {
+  background-color: crimson;
+}
+#password{
+  margin-top: 2px;
+}
