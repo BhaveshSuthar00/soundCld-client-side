@@ -100,4 +100,4 @@ const AbosoluteDiv = styled.div`
         }
     }
 `
-export {Nav, WrapperDiv, AbosoluteDiv} 
+export { Nav, WrapperDiv, AbosoluteDiv } 
