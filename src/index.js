@@ -6,8 +6,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { RenderingStatus } from './Contexts/Status'
 
 ReactDOM.render(
-  // <React.StrictMode>
-    /* </React.StrictMode>, */
   <RenderingStatus>
     <BrowserRouter>
       <App />

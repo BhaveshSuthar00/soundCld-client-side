@@ -6,7 +6,6 @@ export const HistoryTracks = () => {
   let History = JSON.parse(localStorage.getItem("history")) || [];
   useEffect(()=>{
     handleHistory();
-    console.log('here')
     setData(History);
   },[statusChange])
   if(data.length <= 0){

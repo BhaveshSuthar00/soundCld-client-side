@@ -66,11 +66,14 @@ const Navbar = () => {
                 <li>Copyright</li>
                 <li>For creators</li>
                 <li>Blog</li>
-                <li>{!isLogged ? <Link to='/signup' >Signup</Link> : <p onClick={()=>{
-                  handleLogin(false)
-                  removeUserName();
-                  handleStatus2();
-                }}>Log out</p>}</li>
+                <li>{!isLogged ? <Link to='/signup' >Signup</Link> : 
+                <p onClick={()=>{
+                      handleLogin(false)
+                      removeUserName();
+                      handleStatus2();
+                }}>Log out</p>
+                }
+                </li>
               </ul>
             </AbosoluteDiv>
             }
