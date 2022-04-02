@@ -4,7 +4,7 @@ import { ChangeSong } from "../../Contexts/Status";
 import { ElementDiv } from "../Home/styleComponents";
 
 export const Top = () => {
-  const { handleStatus2 } = useContext(ChangeSong);
+  const { handleStatus2,handleHistory } = useContext(ChangeSong);
   let dataLocalStroage = [];
   const [category, setCategory] = useState({
     pop: [],
@@ -29,20 +29,15 @@ export const Top = () => {
   const handleSongPlaylist = (data) => {
     let cat = [];
     if (data === "pop") {
-      // console.log(data, category.pop);
       cat = category.pop;
-      // console.log("catdata", cat);
     }
     if (data === "classical") {
-      // console.log(data, category.classical);
       cat = category.classical;
     }
     if (data === "rock") {
-      // console.log(data, category.rock);
       cat = category.rock;
     }
     if (data === "jazz") {
-      // console.log(data, category.jezz);
       cat = category.jazz;
     }
     while (dataLocalStroage.length > 0) {
@@ -50,7 +45,11 @@ export const Top = () => {
     }
     dataLocalStroage.push(cat);
     handleStatus2();
-    localStorage.setItem("click", JSON.stringify(dataLocalStroage));
+    let history = JSON.parse(localStorage.getItem('history')) || [];
+    history.push(cat[0])
+    localStorage.setItem('history', JSON.stringify(history));
+    handleHistory();
+    localStorage.setItem("click", JSON.stringify([cat]));
   };
   return (
     <>
@@ -79,7 +78,7 @@ export const Top = () => {
           onClick={() => {
             handleSongPlaylist("rock");
           }}
-          src="https://cdn.vectorstock.com/i/1000x1000/17/23/lets-rock-music-print-graphic-design-with-guitar-vector-23381723.webp"
+          src="https://images.8tracks.com/cover/i/001/052/338/75322.original-2297.png?rect=13,0,949,949&q=98&fm=jpg&fit=max"
           alt=""
         />
         <p>Rock</p>

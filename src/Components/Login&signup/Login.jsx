@@ -23,18 +23,16 @@ const Login = ()=> {
         loginStatusData[0]= (response.data.userName)
         localStorage.setItem('userName', JSON.stringify(loginStatusData))
         handleLogin(true);
-        handleStatus2();
+        // handleStatus2();
         navigate('/')
       }
     }).catch((err) =>{
+      handleLogin(false)
       navigate('/signup')
-
-      console.log(err.message);
     })
   }
   const handeleChange = (e) => {
     const { id, value } = e.target;
-    console.log(id, value)
     setFormdata({ ...formdata, [id]: value });
   };
   return (

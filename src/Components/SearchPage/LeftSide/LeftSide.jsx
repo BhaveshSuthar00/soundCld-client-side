@@ -4,7 +4,6 @@ import { useNavigate} from 'react-router-dom'
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { FaRegWindowRestore } from 'react-icons/fa';
 import { BsFillPersonFill,BsSoundwave } from 'react-icons/bs';
-
 const LeftSide = ({ page , query}) => {
   const navigate = useNavigate();
   const handleSearchQuery = (element) => {

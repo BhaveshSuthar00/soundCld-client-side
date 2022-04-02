@@ -6,7 +6,7 @@ import { HeaderTitleDiv, HomeDiv } from "./styleComponents";
 import { Top } from "../Cat/Top";
 import { Playlist } from "../Cat/Playlist";
 import { ChangeSong } from "../../Contexts/Status";
-const Home = ({ handleStatus, status }) => {
+const Home = () => {
   const { handleStatus2 } = useContext(ChangeSong)
   let cat = ["Top", "Party", "Chill", "Bollywood", "Relax", "Workout"];
   useEffect(() => {

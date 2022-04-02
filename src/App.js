@@ -6,7 +6,7 @@ import Player from './Components/Player/Player';
 import { ChangeSong } from './Contexts/Status';
 
 function App() {
-  const { statusChange, handleStatus2 } = useContext(ChangeSong)
+  const { statusChange } = useContext(ChangeSong)
   const [status, setStatus] = useState(false)
   const handleStatus = () => {
     setStatus(!status)

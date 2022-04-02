@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { AbosoluteDiv, Nav, WrapperDiv } from './Nav'
 import { useNavigate, Link } from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
@@ -20,11 +20,6 @@ const Navbar = () => {
   useEffect(() => {
     handleUserName();
   }, [statusChange])
-
-  // useEffect(() => {
-  //   fetchUserPl
-  // })
-
   return (
     <>
       <WrapperDiv>
