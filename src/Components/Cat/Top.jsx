@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ChangeSong } from "../../Contexts/Status";
 import { ElementDiv } from "../Home/styleComponents";
 
-export const Top = ({ handleStatus }) => {
+export const Top = () => {
+  const { handleStatus2 } = useContext(ChangeSong);
   let dataLocalStroage = [];
   const [category, setCategory] = useState({
     pop: [],
@@ -47,7 +49,7 @@ export const Top = ({ handleStatus }) => {
       dataLocalStroage.pop();
     }
     dataLocalStroage.push(cat);
-    handleStatus();
+    handleStatus2();
     localStorage.setItem("click", JSON.stringify(dataLocalStroage));
   };
   return (

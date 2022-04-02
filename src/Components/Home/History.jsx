@@ -17,7 +17,7 @@ export const HistoryTracks = () => {
   return (
     <>
       Listening history
-      <hr />
+     
       <div>
         {newData.map((el, index) => {
           return (
@@ -29,12 +29,12 @@ export const HistoryTracks = () => {
                   <p>singer: {el.singer}</p>
                 </div>
               </div>
-              <hr />
+            
             </>
           );
         })}
       </div>{" "}
-      <hr />
+     
     </>
   );
 };

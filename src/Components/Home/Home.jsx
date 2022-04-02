@@ -25,7 +25,7 @@ const Home = ({ handleStatus, status }) => {
               <p>Popular playlists from the SoundCloud community</p>
             </HeaderTitleDiv>
             <div id="elements-data">
-              <Top handleStatus={handleStatus} status={status} />
+              <Top />
             </div>
             <br />
             <br />
@@ -34,7 +34,7 @@ const Home = ({ handleStatus, status }) => {
               <p>Popular playlists from the SoundCloud community</p>
             </HeaderTitleDiv>
             <div id="elements-data">
-              <Playlist handleStatus={handleStatus} status={status} />
+              <Playlist />
             </div>
           </div>
         </div>
