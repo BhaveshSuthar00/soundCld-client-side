@@ -12,11 +12,11 @@ export const Playlist = () => {
     getData();
   }, []);
   // useEffect(()=>{
-    // try {
-      
-    // } catch (er) {
-    //   console.log(er);
-    // }
+  // try {
+
+  // } catch (er) {
+  //   console.log(er);
+  // }
   // },[])
 
   const getData = () => {
@@ -32,14 +32,14 @@ export const Playlist = () => {
 
   const handleSongPlaylist = (data) => {
     // var bollywood = getplayist[0].playlist;
-      var top100 = getplayist[1].playlist;
-      var party = getplayist[3].playlist;
-      var new_release = getplayist[4].playlist;
-      var romance = getplayist[5].playlist;
-      var sad = getplayist[6].playlist;
-      var chill = getplayist[7].playlist;
-      var workout = getplayist[8].playlist;
-      var good_vibes = getplayist[9].playlist;
+    var top100 = getplayist[1].playlist;
+    var party = getplayist[3].playlist;
+    var new_release = getplayist[4].playlist;
+    var romance = getplayist[5].playlist;
+    var sad = getplayist[6].playlist;
+    var chill = getplayist[7].playlist;
+    var workout = getplayist[8].playlist;
+    var good_vibes = getplayist[9].playlist;
     let cat = [];
     if (data === "bollywood") {
       // console.log(data, category.pop);
