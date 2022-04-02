@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ChangeSong } from "../../Contexts/Status";
 import { ElementDiv } from "../Home/styleComponents";
 
-export const Playlist = ({ handleStatus }) => {
+export const Playlist = () => {
   let dataLocalStroage = [];
   const [getplayist, setGetPlaylist] = useState([]);
-  console.log(getplayist);
+  const { handleStatus2 } = useContext(ChangeSong);
 
   useEffect(() => {
     getData();
@@ -80,7 +81,8 @@ export const Playlist = ({ handleStatus }) => {
       dataLocalStroage.pop();
     }
     dataLocalStroage.push(cat);
-    handleStatus();
+    // handleStatus();
+    handleStatus2();
     localStorage.setItem("click", JSON.stringify(dataLocalStroage));
   };
 
