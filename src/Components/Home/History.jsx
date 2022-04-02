@@ -1,5 +1,8 @@
+// import { useState } from "react";
+
 export const HistoryTracks = () => {
   const data = JSON.parse(localStorage.getItem("click")) || [];
+  // const [boolean, setBoolean] = useState(false);
 
   const data1 = data[0];
   const newData = [];
@@ -17,7 +20,6 @@ export const HistoryTracks = () => {
   return (
     <>
       Listening history
-     
       <div>
         {newData.map((el, index) => {
           return (
@@ -29,12 +31,10 @@ export const HistoryTracks = () => {
                   <p>singer: {el.singer}</p>
                 </div>
               </div>
-            
             </>
           );
         })}
       </div>{" "}
-     
     </>
   );
 };
