@@ -30,10 +30,14 @@ export const RenderingStatus  = ({children}) => {
     const [history, setHistory] = useState(false);
     const handleHistory = () =>{
         let history = JSON.parse(localStorage.getItem('history')) || [];
-        while(history.length > 5){
-            history.shift();
+        let data = [];
+        history = history.reverse();
+        for(let i = 0; i<history.length && i<5; i++ ){
+            if(!data.includes(history[i])){
+                data.push(history[i]);
+            }
         }
-        localStorage.setItem('history', JSON.stringify(history));
+        localStorage.setItem('history', JSON.stringify(data));
         setHistory(!history);
     }
     return (

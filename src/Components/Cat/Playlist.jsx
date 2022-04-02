@@ -6,7 +6,7 @@ import { ElementDiv } from "../Home/styleComponents";
 export const Playlist = () => {
   let dataLocalStroage = [];
   const [getplayist, setGetPlaylist] = useState([]);
-  const { handleStatus2 } = useContext(ChangeSong);
+  const { handleStatus2, handleHistory } = useContext(ChangeSong);
 
   useEffect(() => {
     getData();
@@ -84,6 +84,10 @@ export const Playlist = () => {
     // }
     dataLocalStroage.push(cat);
     handleStatus2();
+    let history = JSON.parse(localStorage.getItem('history')) || [];
+    history.push(cat[0])
+    localStorage.setItem('history', JSON.stringify(history));
+    handleHistory();
     localStorage.setItem("click", JSON.stringify(dataLocalStroage));
   };
 

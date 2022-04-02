@@ -4,7 +4,7 @@ import { ChangeSong } from "../../Contexts/Status";
 import { ElementDiv } from "../Home/styleComponents";
 
 export const Top = () => {
-  const { handleStatus2 } = useContext(ChangeSong);
+  const { handleStatus2,handleHistory } = useContext(ChangeSong);
   let dataLocalStroage = [];
   const [category, setCategory] = useState({
     pop: [],
@@ -48,6 +48,7 @@ export const Top = () => {
     let history = JSON.parse(localStorage.getItem('history')) || [];
     history.push(cat[0])
     localStorage.setItem('history', JSON.stringify(history));
+    handleHistory();
     localStorage.setItem("click", JSON.stringify([cat]));
   };
   return (
