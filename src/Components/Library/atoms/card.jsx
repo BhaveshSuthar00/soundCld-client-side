@@ -22,16 +22,22 @@ const Desc = styledComponents.p`
     text-overflow: ellipsis;
 `
 
-function Card({ poster, title, author, songLink }) {
-    return <div className="card-wrapper" style={{ margin: "0.5rem", }}>
-        <SongPoster imgSrc={poster}>
-            {/* <img src="https:picsum.photos/20" alt="" /> */}
-        </SongPoster>
-        <div className="description">
-            <Desc>{title || "Title"}</Desc>
-            <Desc>{author || "Author"}</Desc>
+function Card({ element }) {
+    return (
+        <div className="card-wrapper" style={{ margin: "0.5rem", }} onClick={() => {
+            let localSrc = JSON.parse(localStorage.getItem("click")) || [];
+            localSrc[0] = element;
+            localStorage.setItem("click", JSON.stringify(localSrc));
+        }}>
+            <SongPoster imgSrc={element.cover}>
+                {/* <img src="https:picsum.photos/20" alt="" /> */}
+            </SongPoster>
+            <div className="description">
+                <Desc>{element.name || "Title"}</Desc>
+                <Desc>{element.singer || "Author"}</Desc>
+            </div>
         </div>
-    </div>
+    )
 }
 
 export { Card };

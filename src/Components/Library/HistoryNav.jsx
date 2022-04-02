@@ -10,7 +10,7 @@ const StyledRow = styledComponents.div`
     width: 80%;
 `
 
-export default function History() {
+export default function HistoryNav() {
     const data = JSON.parse(localStorage.getItem("click")) || [];
 
     const tracks = data[0] || null
@@ -21,11 +21,9 @@ export default function History() {
         <>
             <StyledRow>
                 {
-                    tracks && tracks.map(track => <Card title={track.name} key={track.id} author={track.singer} poster={track.cover} />)
+                    tracks && tracks.map(track => <Card element={track} key={track._id} />)
                 }
-
             </StyledRow>
-
         </>
     )
 }

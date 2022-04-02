@@ -15,8 +15,6 @@ export const HistoryTracks = () => {
     console.log(er);
   }
 
-  // console.log(data);
-
   return (
     <>
       Listening history

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import History from "./History";
+import HistoryNav from "./HistoryNav";
 import { LibNav } from "./LibNav";
 
 export function Library() {
@@ -13,7 +13,7 @@ export function Library() {
         <>
             <LibNav currentTab={currentTab} onTabChange={handleTabChange} />
             {
-                currentTab === 'history' && <History />
+                currentTab === 'history' && <HistoryNav />
             }
 
         </>
