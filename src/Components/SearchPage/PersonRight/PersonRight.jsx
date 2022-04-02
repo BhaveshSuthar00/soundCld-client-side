@@ -3,7 +3,7 @@ import axios from 'axios'
 import {PersonWrapper} from './PersonCart'
 import CdPr from '../bubble.svg'
 import { ChangeSong } from "../../../Contexts/Status";
-const PersonRight = ({query}) => {
+const PersonRight = ({query,page}) => {
   const {handleStatus2} = useContext(ChangeSong)
   const unMountingComponent = useRef(true)
   const [followState, setFollow] = useState(false);
@@ -13,18 +13,23 @@ const PersonRight = ({query}) => {
     try {
       const response = await axios.get('https://soundcloud-serverside.herokuapp.com/');
       let data = await response.data;
-      for(let i = 0; i < data.length; i++){
-        let current = data[i].singer;
-        if(current.toLowerCase() === query.toLowerCase()){
-          setSingerData(data[i]);
-          break;
-        }
-      }
+      // for(let i = 0; i < data.length; i++){
+      //   let current = data[i].singer;
+      //   console.log(current);
+      //   if(current.toLowerCase() === query.toLowerCase()){
+      //     setSingerData(data[i]);
+      //     console.log(data[i]);
+      //     break;
+      //   }
+      // }
       data = data.filter((el)=>{
-        if(el.singer.toLowerCase() === query.toLowerCase()) return true;
+        if(el.singer.toLowerCase() === query.toLowerCase() || el.name.toLowerCase() === query.toLowerCase()){
+          return true;
+        }
         else return false;
       })
-      setDataLocal(data)
+      setDataLocal(data[0])
+      setSingerData(data[0]);
     } catch (e) {
       console.log(e)
     }
@@ -36,7 +41,7 @@ const PersonRight = ({query}) => {
     return (()=> {
       unMountingComponent.current = false;
     })
-  }, [query]);
+  }, [query, page]);
   const handleLocalStorage = ()=>{
     let array = [];
     array.push(dataLocal)
@@ -45,7 +50,6 @@ const PersonRight = ({query}) => {
   }
   const follow = (el) =>{
     setFollow(!followState);
-    console.log(el)
     localStorage.setItem('follow',JSON.stringify(dataLocal))
   }
   if(dataLocal.length ===  0) {

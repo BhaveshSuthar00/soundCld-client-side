@@ -23,15 +23,23 @@ const HomeDiv = styled.div`
 const MainDivHome = styled.div`
   width: 80%;
   margin: auto;
-`;
+  `;
 const ElementDiv = styled.div`
+    margin-bottom: 10%;
+    margin-top: 10%;
+    transition: transform 0.3s ease-in;
   &:hover {
+    transform: scale(1.03);
     cursor: pointer;
   }
   & > img {
     width: 200px;
     height: 250px;
     border-radius: 5px;
+  }
+  &>p {
+    margin-top: 2%;
+    font-size: 20px;
   }
 `;
 

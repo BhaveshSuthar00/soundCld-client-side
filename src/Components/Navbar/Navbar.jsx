@@ -20,11 +20,6 @@ const Navbar = () => {
   useEffect(() => {
     handleUserName();
   }, [statusChange])
-
-  // useEffect(() => {
-  //   fetchUserPl
-  // })
-
   return (
     <>
       <WrapperDiv>

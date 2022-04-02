@@ -11,14 +11,6 @@ export const Playlist = () => {
   useEffect(() => {
     getData();
   }, []);
-  // useEffect(()=>{
-  // try {
-
-  // } catch (er) {
-  //   console.log(er);
-  // }
-  // },[])
-
   const getData = () => {
     axios
       .get("https://soundcloud-serverside.herokuapp.com/list")
@@ -31,57 +23,34 @@ export const Playlist = () => {
   };
 
   const handleSongPlaylist = (data) => {
-    // var bollywood = getplayist[0].playlist;
-    var top100 = getplayist[1].playlist;
-    var party = getplayist[3].playlist;
-    var new_release = getplayist[4].playlist;
-    var romance = getplayist[5].playlist;
-    var sad = getplayist[6].playlist;
-    var chill = getplayist[7].playlist;
-    var workout = getplayist[8].playlist;
-    var good_vibes = getplayist[9].playlist;
     let cat = [];
     if (data === "bollywood") {
-      // console.log(data, category.pop);
       cat = getplayist[0].playlist;
-      // console.log("catdata", cat);
     }
     if (data === "top100") {
-      // console.log(data, category.classical);
-      cat = top100;
+      cat =  getplayist[1].playlist;;
     }
     if (data === "party") {
-      // console.log(data, category.rock);
-      cat = party;
+      cat = getplayist[3].playlist;;
     }
     if (data === "new_release") {
-      // console.log(data, category.jezz);
-      cat = new_release;
+      cat = getplayist[4].playlist;
     }
     if (data === "sad") {
-      // console.log(data, category.pop);
-      cat = sad;
-      // console.log("catdata", cat);
+      cat = getplayist[6].playlist;;
     }
     if (data === "romance") {
-      // console.log(data, category.classical);
-      cat = romance;
+      cat =  getplayist[5].playlist;;
     }
     if (data === "chill") {
-      // console.log(data, category.rock);
-      cat = chill;
+      cat = getplayist[7].playlist;;
     }
     if (data === "workout") {
-      // console.log(data, category.jezz);
-      cat = workout;
+      cat = getplayist[8].playlist;;
     }
     if (data === "goodvibes") {
-      // console.log(data, category.jezz);
-      cat = good_vibes;
+      cat = getplayist[9].playlist;
     }
-    // while (dataLocalStroage.length > 0) {
-    //   dataLocalStroage.pop();
-    // }
     dataLocalStroage.push(cat);
     handleStatus2();
     let history = JSON.parse(localStorage.getItem('history')) || [];

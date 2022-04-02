@@ -78,7 +78,7 @@ export const Top = () => {
           onClick={() => {
             handleSongPlaylist("rock");
           }}
-          src="https://cdn.vectorstock.com/i/1000x1000/17/23/lets-rock-music-print-graphic-design-with-guitar-vector-23381723.webp"
+          src="https://images.8tracks.com/cover/i/001/052/338/75322.original-2297.png?rect=13,0,949,949&q=98&fm=jpg&fit=max"
           alt=""
         />
         <p>Rock</p>
