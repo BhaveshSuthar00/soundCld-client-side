@@ -1,11 +1,9 @@
-import React, {useContext} from "react";
+import React from "react";
 import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
-import { ChangeSong } from "../../Contexts/Status";
 
 const Player = () => {
   let localstr = JSON.parse(localStorage.getItem("click")) || [];  
-  const {statusChange , handleStatus2} = useContext(ChangeSong)
   
   return (
     <div>

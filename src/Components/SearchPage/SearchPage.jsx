@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { Wrapper } from './Search'
 import LeftSide from './LeftSide/LeftSide'
-import AlbumRight from './AlbumRight/AlbumRight'
 import PersonRight from './PersonRight/PersonRight'
-import PlaylistRight from './PlaylistRight/PlaylistRight'
 import RightSide from './RightSide/RightSide'
 const SearchPage = () => {
   const {id} = useParams();
@@ -13,35 +11,16 @@ const SearchPage = () => {
   const query2 = (searchParams.get('q'))
   const [query, setQuery] = useState();
   const [person, setPerson] = useState();
-  const [album, setAlbum] = useState();
-  const [playlist, setPlaylist] = useState();
   useEffect(() => {
-    if(id === 'everything' || id === 'track'){
+    if(id === 'everything' || id === 'track' || id === 'playlist' || id === 'album'){
       setPerson(null)
-      setAlbum(null)
-      setPlaylist(null)
       setQuery(id)
     }
     else if(id === 'people'){
-      setAlbum(null)
-      setPlaylist(null)
       setQuery(null)
       setPerson(id);
     }
-    else if(id === 'album'){
-      setPlaylist(null)
-      setPerson(null)
-      setQuery(null)
-      setAlbum(id);
-      
-    }
-    else if(id === 'playlist') {
-      setPerson(null)
-      setAlbum(null)
-      setQuery(null)
-      setPlaylist(id);
-      
-    }
+    
   }, [id])
   return (
     <div style={{backgroundColor : '#f4f4f4', height: '100%',minHeight:"100%", paddingBottom : "1%"}}>
@@ -52,12 +31,10 @@ const SearchPage = () => {
             <LeftSide query={query2} page={id} />
           </div>
           <div>
-            {query === 'everything' || query === 'track'? 
+            {query === 'everything' || query === 'track' || query === 'album' || query === 'playlist'? 
             <RightSide query={query2} page={id}  />
             : null}
             {person ==='people' ? <PersonRight query={query2} page={id} /> : null}
-            {album ==='album' ? <AlbumRight query={query2} page={id} /> : null}
-            {playlist ==='playlist' ? <PlaylistRight query={query2} page={id} /> : null}
           </div>
         </div>
       </Wrapper>

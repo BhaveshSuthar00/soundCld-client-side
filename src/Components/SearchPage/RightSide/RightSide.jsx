@@ -2,8 +2,7 @@ import axios from 'axios'
 import React, {useState, useEffect, useRef} from 'react'
 import { RightWrapper } from './Right'
 import CardRight from './CardRight';
-import CdPr from './bubble.svg'
-// import Image from '../../../Assets/Eater-1s-200px.svg'
+import CdPr from '../bubble.svg'
 const RightSide = ({page, query}) => {
   const unMountingComponent = useRef(true)
   const [singerData, setSingerData ] = useState([]);

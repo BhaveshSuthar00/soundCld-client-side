@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef, useContext} from 'react'
 import axios from 'axios'
 import {PersonWrapper} from './PersonCart'
+import CdPr from '../bubble.svg'
 import { ChangeSong } from "../../../Contexts/Status";
 const PersonRight = ({query, page}) => {
   const {handleStatus2, statusChange} = useContext(ChangeSong)
@@ -16,7 +17,6 @@ const PersonRight = ({query, page}) => {
         let current = data[i].singer;
         if(current.toLowerCase() === query.toLowerCase()){
           setSingerData(data[i]);
-          console.log(data[i])
           break;
         }
       }
@@ -47,6 +47,13 @@ const PersonRight = ({query, page}) => {
     setFollow(!followState);
     console.log(el)
     localStorage.setItem('follow',JSON.stringify(dataLocal))
+  }
+  if(dataLocal.length ===  0) {
+    return <div>
+      <div style={{margin : 'auto' , width : '100%'}}>
+        <img src={CdPr} alt="" />
+      </div>
+    </div>
   }
   return (
     <div>
