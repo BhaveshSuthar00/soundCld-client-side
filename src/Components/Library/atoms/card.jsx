@@ -9,7 +9,6 @@ const SongPoster = styledComponents.div`
     align-items:center;
     height:100px;  
     width:100px;  
-    &:hover:
 `
 
 const Desc = styledComponents.p`

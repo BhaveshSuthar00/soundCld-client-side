@@ -31,7 +31,7 @@ const Navbar = () => {
           Stream
         </div>
         <div>
-          Library
+          <Link to="/library">Library</Link>
         </div>
       </div>
       <div>

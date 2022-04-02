@@ -4,9 +4,9 @@ export const HistoryTracks = () => {
   const data1 = data[0];
   const newData = [];
 
-  for (let i = 0; i < 5; i++) {
-    newData.push(data1[i]);
-  }
+  // for (let i = 0; i < 5; i++) {
+  //   newData.push(data1[i]);
+  // }
 
   console.log(data);
 
