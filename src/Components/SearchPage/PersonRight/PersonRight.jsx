@@ -28,7 +28,7 @@ const PersonRight = ({query,page}) => {
         }
         else return false;
       })
-      setDataLocal(data[0])
+      setDataLocal(data)
       setSingerData(data[0]);
     } catch (e) {
       console.log(e)
