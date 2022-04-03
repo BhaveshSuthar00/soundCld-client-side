@@ -56,21 +56,21 @@ const Signup = () => {
             />
             <input
               className="Signup_input"
-              type="text"
+              type="email"
               placeholder="Email"
               onInput={handeleChange}
               id="email"
             />
             <input
               className="Signup_input"
-              type="text"
+              type="password"
               placeholder="Password"
               onInput={handeleChange}
               id="password"
             />
             <input
               className="Signup_input"
-              type="text"
+              type="password"
               placeholder="Confirm Password"
               onInput={handeleChange}
               id="confirm"

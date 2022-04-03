@@ -23,7 +23,6 @@ const Login = ()=> {
         loginStatusData[0]= (response.data.userName)
         localStorage.setItem('userName', JSON.stringify(loginStatusData))
         handleLogin(true);
-        // handleStatus2();
         navigate('/')
       }
     }).catch((err) =>{
@@ -52,7 +51,7 @@ const Login = ()=> {
           <span>or</span>
           <hr className="hr"/>
           <input className='Signup_input' onChange={(e)=>{handeleChange(e)}} type="text" id="email" placeholder="Your email address" />
-          <input className='Signup_input' onChange={(e)=>{handeleChange(e)}} id="password" type="text" placeholder="Password" />
+          <input className='Signup_input' onChange={(e)=>{handeleChange(e)}} id="password" type="password" placeholder="Password" />
           <button >Continue</button>
         </form>
         
