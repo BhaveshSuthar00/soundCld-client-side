@@ -8,6 +8,7 @@ const CardRight = ({ elem }) => {
     const [play_pause, setplay_pause] = useState(false);
     const handleIndex = (ele, value) => {
         let localStr = JSON.parse(localStorage.getItem('click')) || [];
+        let history = JSON.parse(localStorage.getItem('history')) || [];
         while (localStr.length !== 0) {
             localStr.pop();
         }
@@ -15,8 +16,11 @@ const CardRight = ({ elem }) => {
             let empty = [];
             localStr.push(empty);
         } else {
+            history.push(ele)
             localStr.push([ele])
         }
+        
+        localStorage.setItem('history', JSON.stringify(history));
         localStorage.setItem('click', JSON.stringify(localStr));
         handleStatus2()
     }

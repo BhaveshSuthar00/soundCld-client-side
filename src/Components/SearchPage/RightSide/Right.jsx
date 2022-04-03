@@ -47,12 +47,12 @@ const RightWrapper = styled.div`
                     width: 95%;
                 }
                 &>.category {
-                    width: 5%;
-                    padding: 1% 1% 2% 1%;
+                    width: 15%;
+                    text-align: center;
                     border-radius: 10px;
-                    background-color: #bbbbbb;
-                    height: 10%;
-                    color: white;
+                    font-size: 21px;
+                    display: inline-block;
+                    color: black;
                 }
             }
         }

@@ -1,5 +1,6 @@
-import React from "react"
+import React, {useContext} from "react"
 import styledComponents from "styled-components"
+import { ChangeSong } from '../../../Contexts/Status'
 
 const SongPoster = styledComponents.div`
     background-image : url(${props => props.imgSrc || 'https://picsum.photos/200'});  
@@ -21,13 +22,17 @@ const Desc = styledComponents.p`
     white-space: nowrap;
     text-overflow: ellipsis;
 `
-
 function Card({ element }) {
+    const {handleStatus2} = useContext(ChangeSong);
+    const handlePlay = ()=>{
+        let localSrc = JSON.parse(localStorage.getItem("click")) || [];
+        localSrc[0] = [element];
+        localStorage.setItem("click", JSON.stringify(localSrc));
+        handleStatus2();
+    }
     return (
         <div className="card-wrapper" style={{ margin: "0.5rem", }} onClick={() => {
-            let localSrc = JSON.parse(localStorage.getItem("click")) || [];
-            localSrc[0] = element;
-            localStorage.setItem("click", JSON.stringify(localSrc));
+            handlePlay();
         }}>
             <SongPoster imgSrc={element.cover}>
                 {/* <img src="https:picsum.photos/20" alt="" /> */}
