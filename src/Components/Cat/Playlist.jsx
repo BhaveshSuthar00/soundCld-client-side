@@ -87,7 +87,7 @@ export const Playlist = () => {
           onClick={() => {
             handleSongPlaylist("party");
           }}
-          src="https://www.music-bazaar.com/album-images/vol32/1545/1545873/3419275-big/Party-Songs-Best-Dance-Running-CD2-cover.jpg"
+          src="https://i.scdn.co/image/ab67616d0000b273a24ce281e4b458eb83fa9c48"
           alt=""
         />
         <p>Party</p>
