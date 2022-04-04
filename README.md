@@ -11,7 +11,7 @@ Project: make a clone of https://soundcloud.com site
 - MongoDB
 - Express
 
-#ScreenShots
+## ScreenShots
 <div style="width : 100%; justify-content:center">
 
   <p>
@@ -37,10 +37,13 @@ Project: make a clone of https://soundcloud.com site
   </p>
   <img src="https://user-images.githubusercontent.com/95856642/161521464-8ce203c9-cb6d-46bc-b790-cbdbcfdd4144.png"/>
   </div>
-  ### End Notes 📑
+  
+  
+  
+  ## End Notes 📑
 In this project we were tried to achieve a near to perfect clone of the original website as much as possible. This entire journey of has given us experiences and we have learned lots of things by applying to the real website and it gave us a lot of confidence. If we have more time we can able to add more products.
 
-### Limitations:
+## Limitations:
 All pages are not responsive yet , those pages are might not be properly visible on small screen devices.
 (Recomended Resolution: 1366 x 768 )
   
