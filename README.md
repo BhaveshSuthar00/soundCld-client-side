@@ -1,5 +1,5 @@
 # SoundCloud-clone
-Project: make a clone of https://soundcloud.com site
+Project: make a clone of https://soundcloud.com site.
 
 *This is a online audio streaming and distribution platform that allows users to stream, and share music and podcasts.*
 
