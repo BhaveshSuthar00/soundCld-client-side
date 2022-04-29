@@ -4,9 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext,useEffect } from "react";
 import axios from "axios"
 import { ChangeSong } from "../../Contexts/Status";
-// https://soundcloud-serverside.herokuapp.com/
+import {useSelector, useDispatch}  from 'react-redux'
+import { apiCallLogin } from "../../Redux/Login/Action";
 const Login = ()=> {
   const navigate = useNavigate();
+  const {loggedIn, loggedOut, user} = useSelector((store)=> store.login)
+  // console.log()
+  const dispatch = useDispatch();
   const {handleStatus2,handleLogin} = useContext(ChangeSong)
   const [formdata, setFormdata] = useState({})
   useEffect(()=>{
@@ -17,6 +21,7 @@ const Login = ()=> {
   let loginStatusData = JSON.parse(localStorage.getItem('userName')) || [];
   const handleSubmit = (e) =>{
     e.preventDefault();
+    dispatch(apiCallLogin(formdata))
     axios.post('https://soundcloud-serverside.herokuapp.com/user/login/singleuser',  {email : formdata.email, password : formdata.password})
     .then((response) =>{
       if(response.data.userName !== null){

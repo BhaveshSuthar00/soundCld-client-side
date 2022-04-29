@@ -5,10 +5,13 @@ import { BsFillPeaceFill } from 'react-icons/bs';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { BiSearchAlt } from 'react-icons/bi';
 import { ChangeSong } from "../../Contexts/Status";
-
+import { useSelector, useDispatch } from 'react-redux'
+import { removeUser } from '../../Redux/Login/Action';
 const Navbar = () => {
   const history = useNavigate();
-  const { isLogged, statusChange, handleLogin, userName, removeUserName, handleUserName, handleStatus2 } = useContext(ChangeSong)
+  const { user, isLoggedOut } = useSelector((store)=> store.login);
+  const dispatch = useDispatch();
+  const {  statusChange, handleUserName } = useContext(ChangeSong)
   const [searchArtist, setSearchArtist] = useState('');
   const [boxState, setBoxState] = useState(false);
 
@@ -54,7 +57,7 @@ const Navbar = () => {
               Upload
             </div>
             <div>
-              {userName !== null ? <p>{userName}</p> :
+              {user.userName ? <p>{user.userName}</p> :
                 <Link to='/login' >Sign in</Link>
               }
             </div>
@@ -69,11 +72,14 @@ const Navbar = () => {
                       <li>Copyright</li>
                       <li>For creators</li>
                       <li>Blog</li>
-                      <li>{isLogged ? <Link to='/signup' >Signup</Link> : <p onClick={() => {
-                        handleLogin(false)
-                        removeUserName();
-                        handleStatus2();
-                      }}>Log out</p>}</li>
+                      <li>{!isLoggedOut ? 
+                            <p onClick={() => {
+                              dispatch(removeUser)
+                            }}>Log out</p>
+                            : 
+                            <Link to='/signup' >Signup</Link> 
+                          }
+                      </li>
                     </ul>
                   </AbosoluteDiv>
                 }
