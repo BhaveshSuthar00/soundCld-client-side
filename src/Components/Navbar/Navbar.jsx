@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { apiCallLogout, removeUser } from '../../Redux/Login/Action';
 const Navbar = () => {
   const history = useNavigate();
-  const { user, isLoggedOut } = useSelector((store)=> store.login);
+  const { user, loggedOut } = useSelector((store)=> store.login);
   const dispatch = useDispatch();
   const {  statusChange, handleUserName } = useContext(ChangeSong)
   const [searchArtist, setSearchArtist] = useState('');
@@ -72,13 +72,16 @@ const Navbar = () => {
                       <li>Copyright</li>
                       <li>For creators</li>
                       <li>Blog</li>
-                      <li>{!isLoggedOut ? 
+                      <li>
+                        {loggedOut ? 
+                            <Link to='/signup' >Signup</Link> 
+                            : 
                             <p onClick={() => {
                               dispatch(apiCallLogout())
-                            }}>Log out</p>
-                            : 
-                            <Link to='/signup' >Signup</Link> 
-                          }
+                            }}>
+                              Log out
+                            </p>
+                        }
                       </li>
                     </ul>
                   </AbosoluteDiv>

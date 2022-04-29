@@ -5,14 +5,17 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { RenderingStatus } from './Contexts/Status'
 import { store } from './Redux/store'
+import  { ChakraProvider, theme } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 ReactDOM.render(
-  <Provider store={store} >
-    <RenderingStatus>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </RenderingStatus>
-  </Provider>,
+  <ChakraProvider theme={theme}>
+    <Provider store={store}>
+      <RenderingStatus>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </RenderingStatus>
+    </Provider>
+  </ChakraProvider>,
   document.getElementById('root')
 );
