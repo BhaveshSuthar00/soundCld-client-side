@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { AbosoluteDiv, Nav, WrapperDiv } from './Nav'
 import { useNavigate, Link } from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { BiSearchAlt } from 'react-icons/bi';
 import { ChangeSong } from "../../Contexts/Status";
 import { useSelector, useDispatch } from 'react-redux'
-import { apiCallLogout, removeUser } from '../../Redux/Login/Action';
+import { apiCallLogout } from '../../Redux/Login/Action';
+import { 
+  Box,
+  Button,
+  Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text,
+} from '@chakra-ui/react'
 const Navbar = () => {
   const history = useNavigate();
   const { user, loggedOut } = useSelector((store)=> store.login);
   const dispatch = useDispatch();
   const {  statusChange, handleUserName } = useContext(ChangeSong)
   const [searchArtist, setSearchArtist] = useState('');
-  const [boxState, setBoxState] = useState(false);
-
-
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     history(`/searchpage/everything?q=${searchArtist}`)
@@ -25,74 +26,83 @@ const Navbar = () => {
   }, [statusChange])
   return (
     <>
-      <WrapperDiv>
-        <Nav>
-          <div>
-            <div>
-              <div>
+      <Flex bgColor='black' p={4} 
+      color='white' position='sticky' 
+      top={0} zIndex={5} 
+      justify='space-between' w='full' >
+          <Flex color='white' align='center' display='flex' fontSize='lg' justify='space-between'   >
+              <Box ml={5}>
                 <BsFillPeaceFill />
-              </div>
-              <div>
+              </Box>
+              <Text ml={5}>
                 <Link to="/">Home</Link>
-              </div>
-            </div>
-            <div>
-              Stream
-            </div>
-            <div>
-              <Link to="/library">Library</Link>
-
-            </div>
-          </div>
-          <div>
-            <form onSubmit={(e) => { handleSearchSubmit(e) }}>
-              <input type="text" placeholder="Search" onChange={(e) => { setSearchArtist(e.target.value) }} />
-              <button type="submit">
+              </Text>
+              <Text ml={5}>
+                Stream
+              </Text>
+              <Text ml={5}>
+                <Link to="/library">Library</Link>
+              </Text>
+          </Flex>
+          <Spacer />
+            <form onSubmit={(e) => { handleSearchSubmit(e) }} style={{display : 'flex', width: '40%'}}>
+              <Input type="text" placeholder="Search" color='black' bgColor='white' w='100%' onChange={(e) => { setSearchArtist(e.target.value) }} />
+              <Button type="submit" display='inline-block' variant='ghost'
+                bgColor='black'
+                color='white'
+                outline='none'
+                colorScheme='black'
+                border='none'> 
                 <BiSearchAlt />
-              </button>
+              </Button>
             </form>
-          </div>
-          <div>
-            <div>
+          <Spacer />
+          <Flex color='white' align='center' fontSize='lg'  >
+            <Text mr={5}>
               Upload
-            </div>
-            <div>
+            </Text>
+            <Box mr={5}>
               {user.userName ? <p>{user.userName}</p> :
                 <Link to='/login' >Sign in</Link>
               }
-            </div>
-            <div className="Last_div_menu" onClick={() => setBoxState(!boxState)}>
-              <div className="Last_div_m">
-                <FiMoreHorizontal />
-                {!boxState ? null :
-                  <AbosoluteDiv>
-                    <ul>
-                      <li>About us</li>
-                      <li>Legal</li>
-                      <li>Copyright</li>
-                      <li>For creators</li>
-                      <li>Blog</li>
-                      <li>
-                        {loggedOut ? 
-                            <Link to='/signup' >Signup</Link> 
-                            : 
-                            <p onClick={() => {
-                              dispatch(apiCallLogout())
-                            }}>
-                              Log out
-                            </p>
-                        }
-                      </li>
-                    </ul>
-                  </AbosoluteDiv>
+            </Box>
+            <Menu mr={5}>
+              <MenuButton
+                as={IconButton}
+                aria-label='Options'
+                icon={<FiMoreHorizontal />}
+                variant='ghost'
+                bgColor='black'
+                color='white'
+                outline='none'
+                colorScheme='black'
+                border='none'
+              />
+              <MenuList
+                mt={2}
+                color='black'
+              >
+              <MenuItem>About us</MenuItem>
+              <MenuItem>Legal</MenuItem>
+              <MenuItem>Copyright</MenuItem>
+              <MenuItem>For creators</MenuItem>
+              <MenuItem>Blog</MenuItem>
+              <MenuItem>
+                {
+                  loggedOut ? 
+                    <Link to='/signup'>Sign up</Link> 
+                  : 
+                  <Text onClick={() => {
+                    dispatch(apiCallLogout())
+                  }}>
+                    Log out
+                  </Text>
                 }
-
-              </div>
-            </div>
-          </div>
-        </Nav>
-
-      </WrapperDiv>
+              </MenuItem>
+            </MenuList>
+            </Menu>
+          </Flex>
+      </Flex>
     </>
   )
 }
