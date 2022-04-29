@@ -1,7 +1,8 @@
 import {ADDLOGIN, REMOVE} from './Action'
-const userName = JSON.parse(localStorage.getItem('userName')) || {}
+const userName = JSON.parse(localStorage.getItem('userName')) || {};
+const userdd = JSON.parse(localStorage.getItem('user')) || {};
 const initialState = {
-    user : userName ||{},
+    user : userdd ||{},
     loggedIn : userName.userName ? true : false,
     loggedOut : !userName.userName ? true : false,
 }
@@ -10,7 +11,6 @@ export const loginReducer = (store = initialState, {type , payload}) => {
         case ADDLOGIN :
             return {...store, user : payload, loggedIn : true, loggedOut : false}
         case REMOVE : {
-            window.localStorage.removeItem('userName');
             return {...store, user : {}, loggedIn : false, loggedOut : true}
         }
         default:

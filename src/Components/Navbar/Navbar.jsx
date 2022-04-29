@@ -6,7 +6,7 @@ import { FiMoreHorizontal } from 'react-icons/fi';
 import { BiSearchAlt } from 'react-icons/bi';
 import { ChangeSong } from "../../Contexts/Status";
 import { useSelector, useDispatch } from 'react-redux'
-import { removeUser } from '../../Redux/Login/Action';
+import { apiCallLogout, removeUser } from '../../Redux/Login/Action';
 const Navbar = () => {
   const history = useNavigate();
   const { user, isLoggedOut } = useSelector((store)=> store.login);
@@ -74,7 +74,7 @@ const Navbar = () => {
                       <li>Blog</li>
                       <li>{!isLoggedOut ? 
                             <p onClick={() => {
-                              dispatch(removeUser)
+                              dispatch(apiCallLogout())
                             }}>Log out</p>
                             : 
                             <Link to='/signup' >Signup</Link> 
