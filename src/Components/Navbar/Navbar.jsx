@@ -91,12 +91,17 @@ const Navbar = () => {
                 {
                   loggedOut ? 
                     <Link to='/signup'>Sign up</Link> 
-                  : 
-                  <Text onClick={() => {
+                  : null
+                } 
+              </MenuItem>
+              <MenuItem>
+                {
+                  !loggedOut ? <Text onClick={() => {
                     dispatch(apiCallLogout())
                   }}>
                     Log out
                   </Text>
+                  : null
                 }
               </MenuItem>
             </MenuList>

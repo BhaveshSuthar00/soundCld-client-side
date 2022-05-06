@@ -4,13 +4,11 @@ const HeaderTitleDiv = styled.div`
   margin-left: 20px;
   margin-bottom: 10px;
   height: 100%;
- 
 `;
 
 const HomeDiv = styled.div`
   display: flex;
   & > div:first-child {
-    /* background-color: teal; */
     width: 70%;
     margin-left: 50px;
   }
@@ -33,11 +31,14 @@ const ElementDiv = styled.div`
     cursor: pointer;
   }
   & > img {
-    width: 200px;
-    height: 250px;
+    width: 80%;
+    margin: auto;
+    height: 80%;
     border-radius: 5px;
   }
   &>p {
+    width: 80%;
+    margin: auto;
     margin-top: 2%;
     font-size: 20px;
   }

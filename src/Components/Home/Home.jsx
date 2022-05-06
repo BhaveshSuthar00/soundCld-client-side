@@ -1,6 +1,5 @@
-import axios from "axios";
 import "../Home/home.css";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { HistoryTracks } from "./History";
 import { HeaderTitleDiv, HomeDiv } from "./styleComponents";
 import { Top } from "../Cat/Top";

@@ -13,15 +13,6 @@ const PersonRight = ({query,page}) => {
     try {
       const response = await axios.get('https://soundcloud-serverside.herokuapp.com/');
       let data = await response.data;
-      // for(let i = 0; i < data.length; i++){
-      //   let current = data[i].singer;
-      //   console.log(current);
-      //   if(current.toLowerCase() === query.toLowerCase()){
-      //     setSingerData(data[i]);
-      //     console.log(data[i]);
-      //     break;
-      //   }
-      // }
       data = data.filter((el)=>{
         if(el.singer.toLowerCase() === query.toLowerCase() || el.name.toLowerCase() === query.toLowerCase()){
           return true;

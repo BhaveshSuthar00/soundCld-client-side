@@ -33,6 +33,7 @@ const RightWrapper = styled.div`
             width: 80%;
             &>.play_pause_icon {
                 width: 5%;
+                margin-right: 3%;
                 &>svg {
                     border-radius: 50%;
                     display: block;
@@ -43,6 +44,7 @@ const RightWrapper = styled.div`
             &>.singer_name {
                 width: 100%;
                 display: flex;
+                font-size: 21px;
                 &>.singer_main {
                     width: 95%;
                 }
@@ -50,7 +52,7 @@ const RightWrapper = styled.div`
                     width: 15%;
                     text-align: center;
                     border-radius: 10px;
-                    font-size: 21px;
+                    font-size: 18px;
                     display: inline-block;
                     color: black;
                 }

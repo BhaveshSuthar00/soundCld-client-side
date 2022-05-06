@@ -21,9 +21,10 @@ const PersonWrapper = styled.div`
         width: 78%;
         margin-top: 4%;
         text-align: left;
+        font-size: 21px;
+        margin-left: 1%;
         &>button {
             cursor: pointer;
-            margin-left: 1%;
             margin-top: 2%;
             border: none;
             padding: 0.5% 0.5%;

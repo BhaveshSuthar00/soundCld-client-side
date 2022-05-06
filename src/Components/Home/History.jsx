@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { ChangeSong } from "../../Contexts/Status";
 export const HistoryTracks = () => {
   const [data, setData] = useState([])
-  const { history, statusChange, handleStatus2, handleHistory } = useContext(ChangeSong);
+  const {  statusChange, handleStatus2, handleHistory } = useContext(ChangeSong);
   let History = JSON.parse(localStorage.getItem("history")) || [];
   useEffect(() => {
     handleHistory();
