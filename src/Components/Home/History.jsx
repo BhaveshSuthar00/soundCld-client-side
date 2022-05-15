@@ -2,8 +2,9 @@ import { useEffect, useState, useContext } from "react";
 import { ChangeSong } from "../../Contexts/Status";
 export const HistoryTracks = () => {
   const [data, setData] = useState([])
-  const {  statusChange, handleStatus2, handleHistory } = useContext(ChangeSong);
+  const { statusChange, handleStatus2, handleHistory } = useContext(ChangeSong);
   let History = JSON.parse(localStorage.getItem("history")) || [];
+
   useEffect(() => {
     handleHistory();
     setData(History);
@@ -11,6 +12,7 @@ export const HistoryTracks = () => {
   if (data.length <= 0) {
     return <></>
   }
+
   const handleClickHistory = (current) => {
     let localSt = JSON.parse(localStorage.getItem('click')) || [];
     localSt[0] = History[current];
@@ -21,7 +23,7 @@ export const HistoryTracks = () => {
     <>
       <div style={{ borderBottom: '1px solid black', padding: '5% 0' }}>Listening history</div>
       <div>
-        {data.map((el, index) => {
+        {Array.isArray(data) && data.map((el, index) => {
           return (
             <div key={index} onClick={() => { handleClickHistory(index) }} className="history-div" style={{ width: '100%', height: '100%', borderBottom: '1px solid black', padding: '3% 0' }}>
               <img src={el.cover} alt="" width="20%" height="100" />
