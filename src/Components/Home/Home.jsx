@@ -7,7 +7,7 @@ import { Playlist } from "../Cat/Playlist";
 import { ChangeSong } from "../../Contexts/Status";
 const Home = () => {
   const { handleStatus2 } = useContext(ChangeSong)
-  let cat = ["Top", "Party", "Chill", "Bollywood", "Relax", "Workout"];
+  //let cat = ["Top", "Party", "Chill", "Bollywood", "Relax", "Workout"];
   useEffect(() => {
     let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
     localPlayer.pop();
