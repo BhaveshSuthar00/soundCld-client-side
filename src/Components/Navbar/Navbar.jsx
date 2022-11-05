@@ -5,12 +5,12 @@ import { FiMoreHorizontal } from 'react-icons/fi';
 import { BiSearchAlt } from 'react-icons/bi';
 import { ChangeSong } from "../../Contexts/Status";
 import { useSelector, useDispatch } from 'react-redux'
-import { apiCallLogout } from '../../Redux/Login/Action';
 import { 
   Box,
   Button,
   Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text,
 } from '@chakra-ui/react'
+import { apiCallLogout } from '../../Redux/Login/Login';
 const Navbar = () => {
   const history = useNavigate();
   const { user, loggedOut } = useSelector((store)=> store.login);

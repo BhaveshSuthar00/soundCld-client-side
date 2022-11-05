@@ -15,9 +15,6 @@ export const HistoryTracks = () => {
   }
   const handleClickHistory = (current) => {
     let localSt = JSON.parse(localStorage.getItem('click')) || [];
-    console.log(localSt[0])
-    localSt[0] = History[current];
-    console.log(localSt[0])
     localStorage.setItem('click', JSON.stringify([localSt]));
     handleStatus2();
   }
@@ -27,7 +24,7 @@ export const HistoryTracks = () => {
       <Box>
         {data && data.length > 2 && data.map((el, index) => {
           if(el !== null) return (
-            <Box key={uuid()} onClick={() => { handleClickHistory(index) }} className="history-div" 
+            <Box key={uuid()} onClick={() => { handleClickHistory(el._id) }} className="history-div" 
             style={{ width: '100%', height: '100%', borderBottom: '1px solid black', padding: '3% 0' }}
             >
               <Image src={el.cover} alt="cover image" width="10%" height="100%" />
