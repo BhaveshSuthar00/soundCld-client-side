@@ -11,7 +11,6 @@ function App() {
   const handleStatus = () => {
     setStatus(!status)
   }
-  useEffect(() => { }, [statusChange])
   return (
     <div className="App">
       <Navbar />

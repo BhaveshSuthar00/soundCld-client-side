@@ -19,6 +19,9 @@ const Navbar = () => {
   const [searchArtist, setSearchArtist] = useState('');
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
+    localPlayer.pop()
+    localStorage.setItem('playerAble', JSON.stringify(localPlayer))
     history(`/searchpage/everything?q=${searchArtist}`)
   };
   useEffect(() => {

@@ -1,5 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { ChangeSong } from "../../Contexts/Status";
+import { v4 as uuid } from 'uuid';
+import { Box, Image, Text } from "@chakra-ui/react";
 export const HistoryTracks = () => {
   const [data, setData] = useState([])
   const { statusChange, handleStatus2, handleHistory } = useContext(ChangeSong);
@@ -16,37 +18,28 @@ export const HistoryTracks = () => {
 
   const handleClickHistory = (current) => {
     let localSt = JSON.parse(localStorage.getItem('click')) || [];
-    let newArray = data.filter((e) => {
-      if (e._id === current) {
-        return e;
-      }
-      
-    })
-    console.log(newArray)
-    localSt = newArray;
     localStorage.setItem('click', JSON.stringify([localSt]));
     handleStatus2();
   }
 
   return (
     <>
-      <div style={{ borderBottom: '1px solid black', padding: '5% 0' }}>Listening history</div>
-      <div>
-        {Array.isArray(data) && data.map((el, index) => {
-          if (el === null) {
-            return
-          }
-          return (
-            <div key={index} onClick={() => { handleClickHistory(el._id) }} className="history-div" style={{ width: '100%', height: '100%', borderBottom: '1px solid black', padding: '3% 0' }}>
-              <img src={el.cover} alt="" width="20%" height="100" />
-              <div style={{ width: '70%', textAlign: 'left', height: '100%' }}>
-                <p style={{ height: '50%', overflow: 'hidden' }}>{el.name}</p>
-                <p>singer: {el.singer}</p>
-              </div>
-            </div>
+      <Box style={{ borderBottom: '1px solid black', padding: '5% 0' }}>Listening history</Box>
+      <Box>
+        {data && data.length > 2 && data.map((el, index) => {
+          if(el !== null) return (
+            <Box key={uuid()} onClick={() => { handleClickHistory(index) }} className="history-div" 
+            style={{ width: '100%', height: '100%', borderBottom: '1px solid black', padding: '3% 0' }}
+            >
+              <Image src={el.cover} alt="cover image" width="10%" height="100%" />
+              <Box style={{ width: '70%', textAlign: 'left', height: '100%' }}>
+                <Text style={{ height: '50%', overflow: 'hidden' }}>{el.name}</Text>
+                <Text>singer: {el.singer}</Text>
+              </Box>
+            </Box>
           );
         })}
-      </div>{" "}
+      </Box>{" "}
     </>
   );
 };
