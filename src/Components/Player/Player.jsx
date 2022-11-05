@@ -1,6 +1,7 @@
 import React from "react";
 import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
+import { HistoryTracks } from "../Home/History";
 
 const Player = () => {
   let localstr = JSON.parse(localStorage.getItem("click")) || [];
@@ -13,6 +14,7 @@ const Player = () => {
       <ReactJkMusicPlayer
         defaultVolume={0.5}
         theme={"dark"}
+        onAudioPlay={(e) => console.log(e)}
         drag={false}
         showPlayMode={false}
         showThemeSwitch={false}
