@@ -51,10 +51,10 @@ const Login = ()=> {
           <hr className="hr"/>
           <Input onChange={(e)=>{handeleChange(e)}} mt={4} type="email" id="email" placeholder="Your email address" />
           <hr className="hr"/>
-          <InputGroup  size={'md'}>
-            <Input onChange={(e)=>{handeleChange(e)}} mt={8} mb={4} id="password" type={toggle ? "text" : "password"} placeholder="Password" />
+          <InputGroup  size={'md'} mt={8} mb={4}>
+            <Input onChange={(e)=>{handeleChange(e)}}  id="password" type={toggle ? "text" : "password"} placeholder="Password" />
             <InputRightElement w='4.5rem' mt={'auto'} mb='auto'>
-              <Button onClick={handleClick} size='sm' h='1.75rem'  >
+              <Button onClick={handleClick}   size='sm' h='1.75rem'>
                 {!toggle ? "Show" : "Hide"}
               </Button>
             </InputRightElement>

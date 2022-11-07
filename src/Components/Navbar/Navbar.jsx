@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, unstable_HistoryRouter, useHistory, matchPath } from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { BiSearchAlt } from 'react-icons/bi';
@@ -11,17 +11,23 @@ import {
   Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text,
 } from '@chakra-ui/react'
 import { apiCallLogout } from '../../Redux/Login/Login';
+import { setVisible } from '../../Redux/Player/Player';
 const Navbar = () => {
   const history = useNavigate();
+  const { visible } = useSelector((store)=> store.player);
   const { user, loggedOut } = useSelector((store)=> store.login);
+  console.log(window.location.pathname);
   const dispatch = useDispatch();
-  const {  statusChange, handleUserName } = useContext(ChangeSong)
+  const { statusChange, handleUserName } = useContext(ChangeSong)
   const [searchArtist, setSearchArtist] = useState('');
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
-    localPlayer.pop()
-    localStorage.setItem('playerAble', JSON.stringify(localPlayer))
+    // let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
+    // localPlayer.pop()
+    // localStorage.setItem('playerAble', JSON.stringify(localPlayer))
+    // if(!visible){
+    //   dispatch(setVisible(true));
+    // }
     history(`/searchpage/everything?q=${searchArtist}`)
   };
   useEffect(() => {
@@ -48,9 +54,9 @@ const Navbar = () => {
               </Text>
           </Flex>
           <Spacer />
-            <form onSubmit={(e) => { handleSearchSubmit(e) }} style={{display : 'flex', width: '40%'}}>
+            <Box as={"form"} onSubmit={(e) => { handleSearchSubmit(e) }} style={{display : 'flex', width: '40%'}}>
               <Input type="text" placeholder="Search" color='black' bgColor='white' w='100%' onChange={(e) => { setSearchArtist(e.target.value) }} />
-              <Button type="submit" display='inline-block' variant='ghost'
+              <Button disabled={window.location.pathname === '/login' || window.location.pathname === '/signup'} type="submit" display='inline-block' variant='ghost'
                 bgColor='black'
                 color='white'
                 outline='none'
@@ -58,7 +64,7 @@ const Navbar = () => {
                 border='none'> 
                 <BiSearchAlt />
               </Button>
-            </form>
+            </Box>
           <Spacer />
           <Flex color='white' align='center' fontSize='lg'  >
             <Text mr={5}>
@@ -66,7 +72,7 @@ const Navbar = () => {
             </Text>
             <Box mr={5}>
               {user.userName ? <p>{user.userName}</p> :
-                <Link to='/login' >Sign in</Link>
+                <Link to='/login' onClick={() => dispatch(setVisible(false))}>Sign in</Link>
               }
             </Box>
             <Menu mr={5}>
@@ -93,7 +99,7 @@ const Navbar = () => {
               <MenuItem>
                 {
                   loggedOut ? 
-                    <Link to='/signup'>Sign up</Link> 
+                    <Link to='/signup' onClick={() => dispatch(setVisible(false))}>Sign up</Link> 
                   : null
                 } 
               </MenuItem>

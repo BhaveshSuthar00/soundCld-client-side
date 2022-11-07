@@ -1,21 +1,20 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { ChangeSong } from "../../Contexts/Status";
+import { setCurrentPlayerWithLocal } from "../../Redux/Player/Player";
 import { ElementDiv } from "../Home/styleComponents";
 
 export const Top = () => {
+  const dispatch = useDispatch();
   const { handleStatus2,handleHistory } = useContext(ChangeSong);
-  let dataLocalStroage = [];
+  // let dataLocalStroage = [];
   const [category, setCategory] = useState({
     pop: [],
     rock: [],
     jezz: [],
     classical: [],
   });
-  useEffect(() => {
-    getData();
-  }, []);
-
   const getData = () => {
     axios
       .get("https://soundcloud-serverside.herokuapp.com/api/category/all")
@@ -40,17 +39,12 @@ export const Top = () => {
     if (data === "jazz") {
       cat = category.jazz;
     }
-    while (dataLocalStroage.length > 0) {
-      dataLocalStroage.pop();
-    }
-    dataLocalStroage.push(cat);
-    handleStatus2();
-    let history = JSON.parse(localStorage.getItem('history')) || [];
-    history.push(cat[0])
-    localStorage.setItem('history', JSON.stringify(history));
-    handleHistory();
-    localStorage.setItem("click", JSON.stringify([cat]));
-  };
+    dispatch(setCurrentPlayerWithLocal(cat));
+  };  
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <ElementDiv>

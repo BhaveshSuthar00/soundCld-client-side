@@ -49,6 +49,7 @@ export const apiCallLogout = () => {
         try {
             window.localStorage.removeItem('userName');
             window.localStorage.removeItem('user');
+            
             dispatch(removeUser())
         }
         catch(err) {

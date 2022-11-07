@@ -1,16 +1,14 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { ChangeSong } from "../../Contexts/Status";
+import { setCurrentPlayerWithLocal } from "../../Redux/Player/Player";
 import { ElementDiv } from "../Home/styleComponents";
 
 export const Playlist = () => {
-  let dataLocalStroage = [];
+  const dispatch = useDispatch();
   const [getplayist, setGetPlaylist] = useState([]);
-  const { handleStatus2, handleHistory } = useContext(ChangeSong);
 
-  useEffect(() => {
-    getData();
-  }, []);
   const getData = () => {
     axios
       .get("https://soundcloud-serverside.herokuapp.com/list")
@@ -24,42 +22,21 @@ export const Playlist = () => {
 
   const handleSongPlaylist = (data) => {
     let cat = [];
-    if (data === "bollywood") {
-      cat = getplayist[0].playlist;
-    }
-    if (data === "top100") {
-      cat =  getplayist[1].playlist;;
-    }
-    if (data === "party") {
-      cat = getplayist[3].playlist;;
-    }
-    if (data === "new_release") {
-      cat = getplayist[4].playlist;
-    }
-    if (data === "sad") {
-      cat = getplayist[6].playlist;;
-    }
-    if (data === "romance") {
-      cat =  getplayist[5].playlist;;
-    }
-    if (data === "chill") {
-      cat = getplayist[7].playlist;;
-    }
-    if (data === "workout") {
-      cat = getplayist[8].playlist;;
-    }
-    if (data === "goodvibes") {
-      cat = getplayist[9].playlist;
-    }
-    dataLocalStroage.push(cat);
-    handleStatus2();
-    let history = JSON.parse(localStorage.getItem('history')) || [];
-    history.push(cat[0])
-    localStorage.setItem('history', JSON.stringify(history));
-    handleHistory();
-    localStorage.setItem("click", JSON.stringify(dataLocalStroage));
+    if (data === "bollywood") cat = getplayist[0].playlist;
+    if (data === "top100") cat =  getplayist[1].playlist;
+    if (data === "party") cat = getplayist[3].playlist;
+    if (data === "new_release") cat = getplayist[4].playlist;
+    if (data === "sad") cat = getplayist[6].playlist;;
+    if (data === "romance") cat =  getplayist[5].playlist;;
+    if (data === "chill") cat = getplayist[7].playlist;;
+    if (data === "workout") cat = getplayist[8].playlist;;
+    if (data === "goodvibes") cat = getplayist[9].playlist;
+    dispatch(setCurrentPlayerWithLocal(cat));
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <>
       <ElementDiv>

@@ -2,27 +2,17 @@ import React, { useState, useContext } from "react";
 
 import { MdPauseCircleFilled } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
-import { ChangeSong } from "../../../Contexts/Status";
-const CardRight = ({ elem }) => {
-    const { handleStatus2 } = useContext(ChangeSong)
-    const [play_pause, setplay_pause] = useState(false);
+import { useDispatch } from "react-redux";
+import { setCurrentPlayerWithLocal } from "../../../Redux/Player/Player";
+const CardRight = ({ elem , play_pause, changeToggler, index }) => {
+    const dispatch = useDispatch();
     const handleIndex = (ele, value) => {
-        let localStr = JSON.parse(localStorage.getItem('click')) || [];
-        let history = JSON.parse(localStorage.getItem('history')) || [];
-        while (localStr.length !== 0) {
-            localStr.pop();
-        }
         if (value) {
-            let empty = [];
-            localStr.push(empty);
+            dispatch(setCurrentPlayerWithLocal([]))
         } else {
-            history.push(ele)
-            localStr.push([ele])
+            dispatch(setCurrentPlayerWithLocal([ele]))
         }
-        
-        localStorage.setItem('history', JSON.stringify(history));
-        localStorage.setItem('click', JSON.stringify(localStr));
-        handleStatus2()
+        changeToggler(index);
     }
     return (
         <div>
@@ -30,11 +20,8 @@ const CardRight = ({ elem }) => {
                 <img src={elem.cover} alt="cover" />
             </div>
             <div className="rightCorner">
-                <div className="play_pause_icon" onClick={() => {
-                    handleIndex(elem, play_pause)
-                    setplay_pause(!play_pause);
-                }}>
-                    {play_pause === false ? <AiFillPlayCircle /> : <MdPauseCircleFilled />}
+                <div className="play_pause_icon" onClick={() => handleIndex(elem, play_pause)}>
+                    {play_pause === false  ? <AiFillPlayCircle /> : <MdPauseCircleFilled />}
                 </div>
                 <div className="singer_name">
                     <div className="singer_main">

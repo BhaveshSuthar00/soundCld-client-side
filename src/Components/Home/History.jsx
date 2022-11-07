@@ -1,34 +1,20 @@
-import { useEffect, useState, useContext } from "react";
-import { ChangeSong } from "../../Contexts/Status";
 import { v4 as uuid } from 'uuid';
 import { Box, Image, Text } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPlayerWithLocal } from "../../Redux/Player/Player";
 export const HistoryTracks = () => {
-  const [data, setData] = useState([])
-  const { statusChange, handleStatus2, handleHistory } = useContext(ChangeSong);
-  let History = JSON.parse(localStorage.getItem("history")) || [];
-
-  useEffect(() => {
-    handleHistory();
-    setData(History);
-  }, [statusChange])
-
-  if (data.length <= 0) {
-    return <></>
-  }
-
+  const dispatch = useDispatch();
+  const { history } = useSelector(store => store.history);
   const handleClickHistory = (current) => {
-    let localSt = JSON.parse(localStorage.getItem('click')) || [];
-    localStorage.setItem('click', JSON.stringify([localSt]));
-    handleStatus2();
+    dispatch(setCurrentPlayerWithLocal([current]));
   }
-
   return (
     <>
       <Box style={{ borderBottom: '1px solid black', padding: '5% 0' }}>Listening history</Box>
       <Box>
-        {data && data.length > 2 && data.map((el, index) => {
-          if(el !== null) return (
-            <Box key={uuid()} onClick={() => { handleClickHistory(el._id) }} className="history-div" 
+        {history && history.map((el, index) => {
+          if(el !== null && index < 5) return (
+            <Box key={uuid()} onClick={() => { handleClickHistory(el) }} className="history-div" 
             style={{ width: '100%', height: '100%', borderBottom: '1px solid black', padding: '3% 0' }}
             >
               <Image src={el.cover} alt="cover image" width="10%" height="100%" />

@@ -1,48 +1,38 @@
 import React from "react";
 import ReactJkMusicPlayer from "react-jinke-music-player";
 import "react-jinke-music-player/assets/index.css";
-import { HistoryTracks } from "../Home/History";
-
+import {useDispatch, useSelector} from 'react-redux'
+import { addTOHistory } from "../../Redux/History/History";
 const Player = () => {
+  const { currentPlayer, visible } = useSelector(store  => store.player);
   let localstr = JSON.parse(localStorage.getItem("click")) || [];
   let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
+  const dispatch = useDispatch();
   const handleAddHistory = (currentSong) => {
-    
-    // let history = JSON.parse(localStorage.getItem("historyNew")) || [];
-    // history = history.reverse();
-    // if(history.length > 6){
-    //   history = history.splice(6, history.length - 6);
-    // }
-    // history = history.reverse();
-    // let newarr = history.filter((item) => item._id !== currentSong._id);
-    // for(let i = 0; i < newarr.length; i++) {
-    //     newarr.push(currentSong)      
-    // }
-    // console.log(newarr, 'this is new arr')
-    // localStorage.setItem("historyNew", JSON.stringify([newarr]));
-  }
-  if (localPlayer.length === 1) {
+      dispatch(addTOHistory(currentSong));
+    }
+    if(!visible) return <></> 
+  if (currentPlayer.length <= 0) {
     return <></>
   }
-  if(localstr.length === 0) return <></>
-  
   return (
-    <div >
+    <>
       <ReactJkMusicPlayer
         defaultVolume={0.5}
         theme={"dark"}
+        autoPlay={false}
         onAudioPlay={(e) => handleAddHistory(e)}
         drag={false}
         showPlayMode={false}
         showThemeSwitch={false}
-        audioLists={localstr[0]}
+        audioLists={currentPlayer}
         clearPriorAudioLists={true}
         autoPlayInitLoadPlayList={true}
         mode={"full"}
         preload={false}
         showDownload={false}
       />
-    </div>
+    </>
   );
 };
 

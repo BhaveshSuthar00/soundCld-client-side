@@ -5,14 +5,14 @@ import { HeaderTitleDiv, HomeDiv } from "./styleComponents";
 import { Top } from "../Cat/Top";
 import { Playlist } from "../Cat/Playlist";
 import { ChangeSong } from "../../Contexts/Status";
+import { useDispatch } from "react-redux";
+import { setVisible } from "../../Redux/Player/Player";
 const Home = () => {
   const { handleStatus2 } = useContext(ChangeSong)
+  const dispatch = useDispatch();
   //let cat = ["Top", "Party", "Chill", "Bollywood", "Relax", "Workout"];
   useEffect(() => {
-    let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
-    localPlayer.pop();
-    localStorage.setItem('playerAble', JSON.stringify(localPlayer));
-    handleStatus2();
+    dispatch(setVisible(true))
   }, [])
   return (
     <>
