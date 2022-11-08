@@ -6,22 +6,26 @@ const slice = createSlice({
         history : JSON.parse(localStorage.getItem('historyNew')) || [],
     },
     reducers : {
-        updateHistory : (state, { payload }) => {
-            console.log(payload, 'payload is this now')
-            state.history = payload;
+        updateHistory : (state, action) => {
+            state.history = action.payload;
+        },
+        removeHistory : (state, action) => {
+            localStorage.removeItem('historyNew');
+            state.history = [];
         }
     }
 })
 export const {
-    updateHistory
+    updateHistory,
+    removeHistory
 } = slice.actions;
-export const addTOHistory = (song) => async (dispatch, getState) => {
+export const addTOHistory = (song) => (dispatch, getState) => {
     const { history } = getState().history;
     let newList = history.filter(history => history._id !== song._id);
     newList.push(song);
     newList = newList.reverse();
-    dispatch(updateHistory(newList));
     localStorage.setItem('historyNew', JSON.stringify(newList));
+    dispatch(updateHistory(newList));
 }
 
 export default slice.reducer;

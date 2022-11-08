@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { useNavigate, Link, unstable_HistoryRouter, useHistory, matchPath } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { BiSearchAlt } from 'react-icons/bi';
@@ -8,31 +8,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import { 
   Box,
   Button,
-  Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Spacer, Stack, Text,
+  Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Spacer, Text,
 } from '@chakra-ui/react'
 import { apiCallLogout } from '../../Redux/Login/Login';
-import { setVisible } from '../../Redux/Player/Player';
+import { removeSongs, setVisible } from '../../Redux/Player/Player';
+import { removeHistory } from '../../Redux/History/History';
 const Navbar = () => {
   const history = useNavigate();
-  const { visible } = useSelector((store)=> store.player);
   const { user, loggedOut } = useSelector((store)=> store.login);
-  console.log(window.location.pathname);
   const dispatch = useDispatch();
-  const { statusChange, handleUserName } = useContext(ChangeSong)
+  // const { statusChange, handleUserName } = useContext(ChangeSong)
   const [searchArtist, setSearchArtist] = useState('');
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
-    // localPlayer.pop()
-    // localStorage.setItem('playerAble', JSON.stringify(localPlayer))
-    // if(!visible){
-    //   dispatch(setVisible(true));
-    // }
     history(`/searchpage/everything?q=${searchArtist}`)
   };
-  useEffect(() => {
-    handleUserName();
-  }, [statusChange])
+  // useEffect(() => {
+  //   handleUserName();
+  // }, [statusChange])
   return (
     <>
       <Flex bgColor='black' p={4} 
@@ -107,6 +100,8 @@ const Navbar = () => {
                 {
                   !loggedOut ? <Text onClick={() => {
                     dispatch(apiCallLogout())
+                    dispatch(removeHistory())
+                    dispatch(removeSongs())
                   }}>
                     Log out
                   </Text>

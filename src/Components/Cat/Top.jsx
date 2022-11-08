@@ -1,14 +1,13 @@
+import { Box, Image, Text } from "@chakra-ui/react";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ChangeSong } from "../../Contexts/Status";
+import { Link } from "react-router-dom";
 import { setCurrentPlayerWithLocal } from "../../Redux/Player/Player";
 import { ElementDiv } from "../Home/styleComponents";
 
 export const Top = () => {
   const dispatch = useDispatch();
-  const { handleStatus2,handleHistory } = useContext(ChangeSong);
-  // let dataLocalStroage = [];
   const [category, setCategory] = useState({
     pop: [],
     rock: [],
@@ -47,6 +46,15 @@ export const Top = () => {
 
   return (
     <>
+      {/* <Box as={Link} to="/playlist" mt={6} textAlign='center'
+      transition="transform 0.3s ease-in"
+      display={'flex'}
+      flexDir='column'
+      _hover={{transform: "scale(1.03)",cursor: "pointer"}}
+      >
+        <Image src={'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pop-album-art-design-template-905e52dee4423a5f33b0c508665cf7bf_screen.jpg?ts=1598362553'} />
+        <Text margin={'auto'} textAlign='center'>Pop</Text>
+      </Box> */}
       <ElementDiv>
         <img
           onClick={() => {

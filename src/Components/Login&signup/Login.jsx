@@ -16,12 +16,8 @@ const Login = ()=> {
   const handleSubmit = (e) =>{
     e.preventDefault();
     dispatch(apiCallLogin(formdata)).then((res)=> {
-      res === true ?  navigate('/') : navigate('/login');
-      if(res === 'err'){
-        document.getElementById('email').value = null;
-        document.getElementById('password').value = null;
-        alert('Enter right email or password')
-      }
+      // res === true ?  navigate('/') : navigate('/login');
+        navigate('/')
     }).catch((err)=> {
       alert('error while login')
       navigate('/login')

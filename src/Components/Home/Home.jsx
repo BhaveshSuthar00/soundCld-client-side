@@ -1,5 +1,5 @@
 import "../Home/home.css";
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { HistoryTracks } from "./History";
 import { HeaderTitleDiv, HomeDiv } from "./styleComponents";
 import { Top } from "../Cat/Top";
@@ -8,7 +8,6 @@ import { ChangeSong } from "../../Contexts/Status";
 import { useDispatch } from "react-redux";
 import { setVisible } from "../../Redux/Player/Player";
 const Home = () => {
-  const { handleStatus2 } = useContext(ChangeSong)
   const dispatch = useDispatch();
   //let cat = ["Top", "Party", "Chill", "Bollywood", "Relax", "Workout"];
   useEffect(() => {

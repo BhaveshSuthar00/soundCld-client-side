@@ -5,13 +5,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import { addTOHistory } from "../../Redux/History/History";
 const Player = () => {
   const { currentPlayer, visible } = useSelector(store  => store.player);
-  let localstr = JSON.parse(localStorage.getItem("click")) || [];
-  let localPlayer = JSON.parse(localStorage.getItem("playerAble")) || [];
   const dispatch = useDispatch();
   const handleAddHistory = (currentSong) => {
       dispatch(addTOHistory(currentSong));
     }
-    if(!visible) return <></> 
+  if(!visible) return <></> 
   if (currentPlayer.length <= 0) {
     return <></>
   }
@@ -20,7 +18,7 @@ const Player = () => {
       <ReactJkMusicPlayer
         defaultVolume={0.5}
         theme={"dark"}
-        autoPlay={false}
+        autoPlay={visible ? true : false}
         onAudioPlay={(e) => handleAddHistory(e)}
         drag={false}
         showPlayMode={false}

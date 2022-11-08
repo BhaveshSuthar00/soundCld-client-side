@@ -10,11 +10,9 @@ import { Provider } from 'react-redux'
 ReactDOM.render(
   <ChakraProvider theme={theme}>
     <Provider store={store}>
-      <RenderingStatus>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </RenderingStatus>
     </Provider>
   </ChakraProvider>,
   document.getElementById('root')
