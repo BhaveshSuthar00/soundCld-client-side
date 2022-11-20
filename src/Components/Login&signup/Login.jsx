@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useContext,useEffect } from "react";
-import { ChangeSong } from "../../Contexts/Status";
+import { useState, useEffect } from "react";
 import { useDispatch}  from 'react-redux'
 import { GiCrossedBones } from 'react-icons/gi'
 import { Box, Button, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
@@ -9,15 +8,13 @@ import { apiCallLogin } from "../../Redux/Login/Login";
 const Login = ()=> {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {handleStatus2} = useContext(ChangeSong);
   const [formdata, setFormdata] = useState({});
   const [toggle, setToggle] = useState(false);
   const handleClick = () => setToggle(!toggle);
   const handleSubmit = (e) =>{
     e.preventDefault();
     dispatch(apiCallLogin(formdata)).then((res)=> {
-      // res === true ?  navigate('/') : navigate('/login');
-        navigate('/')
+        navigate('/');
     }).catch((err)=> {
       alert('error while login')
       navigate('/login')
@@ -30,7 +27,6 @@ const Login = ()=> {
   useEffect(()=>{
     let localPlayer = ['value'];
     localStorage.setItem('playerAble', JSON.stringify(localPlayer));
-    handleStatus2();
   },[])
   
   return (
@@ -57,7 +53,7 @@ const Login = ()=> {
           </InputGroup>
           <Button colorScheme={'orange'} type='submit'>Continue</Button>
         </Box>
-        <Box >
+        <Box mt={4}>
           <Text as={"i"} fontSize='xs'>When registering, you agree that we may use your provided data for the registration and to send you notifications on our products and services. You can unsubscribe from notifications at any time in your settings. For additional info please refer to our <a href="https://soundcloud.com/pages/privacy" target={"_blank"}>Privacy Policy</a>.</Text>
         </Box>
         <Box className="footer">

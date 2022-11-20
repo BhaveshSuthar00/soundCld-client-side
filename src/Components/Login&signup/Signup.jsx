@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { ChangeSong } from "../../Contexts/Status";
@@ -7,7 +7,6 @@ import { GiCrossedBones } from 'react-icons/gi'
 import { Box, Button, Input, InputGroup, InputRightElement, Text, useToast } from "@chakra-ui/react";
 const Signup = () => {
   const navigate = useNavigate();
-  const {handleStatus2} = useContext(ChangeSong);
   const toast = useToast();
   const [formdata, setFormdata] = useState({});
   const [toggle, setToggle] = useState(true);
@@ -41,7 +40,6 @@ const Signup = () => {
   useEffect(()=>{
     let localPlayer = ['value'];
     localStorage.setItem('playerAble', JSON.stringify(localPlayer));
-    handleStatus2();
   },[])
     return (
       <Box mt={'auto'} display='flex' h='container.md' bgColor={'gray'}>
