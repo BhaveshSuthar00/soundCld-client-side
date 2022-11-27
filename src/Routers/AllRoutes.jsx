@@ -10,7 +10,7 @@ const AllRoutes = ({ handleStatus, status }) => {
   return (
     <Routes>
       <Route path="/" element={<Home handleStatus={handleStatus} status={status} />} />
-      <Route path="/playlist" element={<PlayList />} />
+      <Route path="/playlist/:id" element={<PlayList />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/searchpage/:id" element={<SearchPage />} />

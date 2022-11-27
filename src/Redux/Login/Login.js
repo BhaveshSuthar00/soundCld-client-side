@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { BaseURL } from "../../constants";
 const cookies = new Cookies();
 const userId = cookies.get('soundCloud');
 const slice = createSlice({
@@ -32,7 +33,7 @@ export const {
 
 export const apiCallLogin = (formdata) => async (dispatch)=>{
     try {
-        let req =  await axios.post('https://soundcloud-serverside.herokuapp.com/user/login/singleuser',  {email : formdata.email, password : formdata.password})
+        let req =  await axios.post(`${BaseURL}/user/login/singleuser`,  {email : formdata.email, password : formdata.password})
         cookies.set('soundCloud', req.data, { path : '/', secure : true})
         dispatch(addLogin(req.data));
     } catch (err) {

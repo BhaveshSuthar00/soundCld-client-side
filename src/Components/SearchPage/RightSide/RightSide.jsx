@@ -3,18 +3,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import { RightWrapper } from './Right'
 import CardRight from './CardRight';
 import CdPr from '../bubble.svg'
+import { BaseURL } from '../../../constants';
 const RightSide = ({ page, query }) => {
   const unMountingComponent = useRef(true)
-  const [parentToggle, setParentToggle] = useState(false);
   const [singerData, setSingerData] = useState([]);
   const [boolList, setBoolList] = useState([]);
-  let arrayOf = [];
-  const setToggleP = (value)=> {
-    setParentToggle(value);
-  }
   const getData = async (query) => {
     try {
-      const response = await axios.get('https://soundcloud-serverside.herokuapp.com/');
+      const response = await axios.get(`${BaseURL}`);
       let data = await response.data;
       data = data.filter((el) => {
 
@@ -36,7 +32,6 @@ const RightSide = ({ page, query }) => {
         return false
       }
     })
-    console.log(newArr)
     setBoolList(newArr);
     
   }
@@ -51,7 +46,7 @@ const RightSide = ({ page, query }) => {
 
   if (singerData.length === 0) {
     return <div>
-      <div style={{ margin: 'auto', width: '100%' }}>
+      <div style={{ display : 'flex', margin: 'auto', width: '100%' }}>
         <img src={CdPr} alt="" />
       </div>
     </div>

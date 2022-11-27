@@ -1,6 +1,7 @@
-import React, {useContext} from "react"
+import React from "react"
+import { useDispatch } from "react-redux"
 import styledComponents from "styled-components"
-import { ChangeSong } from '../../../Contexts/Status'
+import { setCurrentPlayer } from "../../../Redux/Player/Player"
 
 const SongPoster = styledComponents.div`
     background-image : url(${props => props.imgSrc || 'https://picsum.photos/200'});  
@@ -23,19 +24,15 @@ const Desc = styledComponents.p`
     text-overflow: ellipsis;
 `
 function Card({ element }) {
-    const {handleStatus2} = useContext(ChangeSong);
+    const dispatch = useDispatch();
     const handlePlay = ()=>{
-        let localSrc = JSON.parse(localStorage.getItem("click")) || [];
-        localSrc[0] = [element];
-        localStorage.setItem("click", JSON.stringify(localSrc));
-        handleStatus2();
+        dispatch(setCurrentPlayer([element]));
     }
     return (
         <div className="card-wrapper" style={{ margin: "0.5rem", }} onClick={() => {
             handlePlay();
         }}>
             <SongPoster imgSrc={element.cover}>
-                {/* <img src="https:picsum.photos/20" alt="" /> */}
             </SongPoster>
             <div className="description">
                 <Desc>{element.name || "Title"}</Desc>

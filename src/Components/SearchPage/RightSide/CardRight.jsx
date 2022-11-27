@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 
 import { MdPauseCircleFilled } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { useDispatch } from "react-redux";
-import { setCurrentPlayerWithLocal } from "../../../Redux/Player/Player";
+import { setCurrentPlayer } from "../../../Redux/Player/Player";
 const CardRight = ({ elem , play_pause, changeToggler, index }) => {
     const dispatch = useDispatch();
     const handleIndex = (ele, value) => {
         if (value) {
-            dispatch(setCurrentPlayerWithLocal([]))
+            dispatch(setCurrentPlayer([]));
         } else {
-            dispatch(setCurrentPlayerWithLocal([ele]))
+            dispatch(setCurrentPlayer([ele]));
         }
         changeToggler(index);
     }

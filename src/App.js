@@ -1,20 +1,12 @@
-// import './App.css';
 import AllRoutes from './Routers/AllRoutes';
 import Navbar from './Components/Navbar/Navbar'
 import Player from './Components/Player/Player';
 
 function App() {
-  // const { statusChange } = useContext(ChangeSong)
-  // const [status, setStatus] = useState(false)
-  // const handleStatus = () => {
-  //   setStatus(!status)
-  // }
   return (
     <div className="App">
       <Navbar />
-      <AllRoutes 
-      // status={status} handleStatus={handleStatus} 
-      />
+      <AllRoutes />
       <Player />
     </div>
   );

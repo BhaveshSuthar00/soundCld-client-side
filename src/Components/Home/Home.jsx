@@ -4,15 +4,13 @@ import { HistoryTracks } from "./History";
 import { HeaderTitleDiv, HomeDiv } from "./styleComponents";
 import { Top } from "../Cat/Top";
 import { Playlist } from "../Cat/Playlist";
-import { ChangeSong } from "../../Contexts/Status";
 import { useDispatch } from "react-redux";
-import { setVisible } from "../../Redux/Player/Player";
+import { setLogSign } from "../../Redux/Player/Player";
 const Home = () => {
   const dispatch = useDispatch();
-  //let cat = ["Top", "Party", "Chill", "Bollywood", "Relax", "Workout"];
   useEffect(() => {
-    dispatch(setVisible(true))
-  }, [])
+    dispatch(setLogSign(false));
+  }, [ dispatch ])
   return (
     <>
       <HomeDiv>

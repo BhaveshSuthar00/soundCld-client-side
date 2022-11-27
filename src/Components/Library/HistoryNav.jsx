@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux';
 import styledComponents from 'styled-components';
 
 import { Card } from './atoms/card';
@@ -11,20 +12,13 @@ const StyledRow = styledComponents.div`
 `
 
 export default function HistoryNav() {
-    const [track, setTrack] = useState([])
-    const data = JSON.parse(localStorage.getItem("history")) || [];
-
-    useEffect(()=>{
-        setTrack(data)
-    },[])
-    if(track.length < 0){
-        return <></>
-    }
+    const { history } = useSelector(store => store.history);
+    if(history.length < 0) return <></>
     return (
         <>
             <StyledRow>
                 {
-                    track.map((track,i ) => <Card element={track} key={i} />)
+                    history.map((track) => <Card element={track} key={track._id} />)
                 }
             </StyledRow>
         </>

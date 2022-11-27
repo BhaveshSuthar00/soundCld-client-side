@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { BsFillPeaceFill } from 'react-icons/bs';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { BiSearchAlt } from 'react-icons/bi';
-import { ChangeSong } from "../../Contexts/Status";
 import { useSelector, useDispatch } from 'react-redux'
 import { 
   Box,
@@ -11,21 +10,17 @@ import {
   Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Spacer, Text,
 } from '@chakra-ui/react'
 import { apiCallLogout } from '../../Redux/Login/Login';
-import { removeSongs, setVisible } from '../../Redux/Player/Player';
+import { removeSongs, setLogSign } from '../../Redux/Player/Player';
 import { removeHistory } from '../../Redux/History/History';
 const Navbar = () => {
   const history = useNavigate();
   const { user, loggedOut } = useSelector((store)=> store.login);
   const dispatch = useDispatch();
-  // const { statusChange, handleUserName } = useContext(ChangeSong)
   const [searchArtist, setSearchArtist] = useState('');
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     history(`/searchpage/everything?q=${searchArtist}`)
   };
-  // useEffect(() => {
-  //   handleUserName();
-  // }, [statusChange])
   return (
     <>
       <Flex bgColor='black' p={4} 
@@ -64,8 +59,8 @@ const Navbar = () => {
               Upload
             </Text>
             <Box mr={5}>
-              {user.userName ? <p>{user.userName}</p> :
-                <Link to='/login' onClick={() => dispatch(setVisible(false))}>Sign in</Link>
+              {user.userName ? <p>{ user.userName }</p> :
+                <Link to='/login' onClick={() => dispatch(setLogSign(true))}>Sign in</Link>
               }
             </Box>
             <Menu mr={5}>
@@ -92,7 +87,7 @@ const Navbar = () => {
               <MenuItem>
                 {
                   loggedOut ? 
-                    <Link to='/signup' onClick={() => dispatch(setVisible(false))}>Sign up</Link> 
+                    <Link to='/signup' onClick={() => dispatch(setLogSign(true))}>Sign up</Link> 
                   : null
                 } 
               </MenuItem>

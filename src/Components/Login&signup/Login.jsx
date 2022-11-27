@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch}  from 'react-redux'
 import { GiCrossedBones } from 'react-icons/gi'
 import { Box, Button, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
@@ -24,14 +24,14 @@ const Login = ()=> {
     const { id, value } = e.target;
     setFormdata({ ...formdata, [id]: value });
   };
-  useEffect(()=>{
-    let localPlayer = ['value'];
-    localStorage.setItem('playerAble', JSON.stringify(localPlayer));
-  },[])
+  // useEffect(()=>{
+  //   let localPlayer = ['value'];
+  //   localStorage.setItem('playerAble', JSON.stringify(localPlayer));
+  // },[])
   
   return (
     <Box mt={'auto'} display='flex' h='container.md' bgColor={'gray'}>
-      <Box mt={'auto'} mb='auto' margin={'auto'} w={'40%'} boxShadow='lg' bgColor={'white'} padding={4}>
+      <Box mt={'auto'} mb='auto' margin={'auto'} w={{base : '30%', lg : '30%', md : '60%', sm : '90%'}} boxShadow='lg' bgColor={'white'} padding={4}>
         <Box textAlign={'end'}>
           <Button variant={'ghost'} onClick={() => navigate('/')} _hover={{backgroundColor:"transparent"}}> <GiCrossedBones /> </Button>
         </Box>
@@ -39,12 +39,12 @@ const Login = ()=> {
           <Button mt={2} disabled={true} colorScheme={'facebook'}>Continue with Facebook</Button>
           <Button mt={2} disabled={true}>Continue with Google</Button>
           <Button mt={2} mb={2} disabled={true} colorScheme={'blackAlpha'}>Continue with Apple</Button>
-          <Text>or</Text>
-          <hr className="hr"/>
+          <Text m={3} ml={'auto'} mr={'auto'} >or</Text>
+          {/* <hr className="hr"/> */}
           <Input onChange={(e)=>{handeleChange(e)}} mt={4} type="email" id="email" placeholder="Your email address" />
-          <hr className="hr"/>
+          {/* <hr className="hr"/> */}
           <InputGroup  size={'md'} mt={8} mb={4}>
-            <Input onChange={(e)=>{handeleChange(e)}}  id="password" type={toggle ? "text" : "password"} placeholder="Password" />
+            <Input onChange={(e)=>{handeleChange(e)}} autoComplete={"true"}  id="password" type={toggle ? "text" : "password"} placeholder="Password" />
             <InputRightElement w='4.5rem' mt={'auto'} mb='auto'>
               <Button onClick={handleClick}   size='sm' h='1.75rem'>
                 {!toggle ? "Show" : "Hide"}
@@ -54,7 +54,7 @@ const Login = ()=> {
           <Button colorScheme={'orange'} type='submit'>Continue</Button>
         </Box>
         <Box mt={4}>
-          <Text as={"i"} fontSize='xs'>When registering, you agree that we may use your provided data for the registration and to send you notifications on our products and services. You can unsubscribe from notifications at any time in your settings. For additional info please refer to our <a href="https://soundcloud.com/pages/privacy" target={"_blank"}>Privacy Policy</a>.</Text>
+          <Text as={"i"} fontSize='xs'>When registering, you agree that we may use your provided data for the registration and to send you notifications on our products and services. You can unsubscribe from notifications at any time in your settings. For additional info please refer to our <a href="https://soundcloud.com/pages/privacy" target={"_blank"} rel="noreferrer">Privacy Policy</a>.</Text>
         </Box>
         <Box className="footer">
           

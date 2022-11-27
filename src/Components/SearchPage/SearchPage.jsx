@@ -8,7 +8,7 @@ const SearchPage = () => {
   const { id } = useParams();
 
   const [searchParams] = useSearchParams();
-  const query2 = (searchParams.get('q'))
+  const query2 = (searchParams.get('q'));
   const [query, setQuery] = useState();
   const [person, setPerson] = useState();
   useEffect(() => {
