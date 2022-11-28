@@ -2,18 +2,19 @@ import { Box, Image, Text } from "@chakra-ui/react"
 import { MdPauseCircleFilled } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
-import { changeTogglee, setVisible } from "../../Redux/Player/Player";
+import { setCurrentIndex, setCurrentPage, setVisible } from "../../Redux/Player/Player";
 import { useState } from "react";
 
-export const Card = ({item, currentIndex, toggler}) => {
-    const { songList } = useSelector(store => store.player);
+export const Card = ({item, id, i}) => {
+    const { songList, currentIndex, visible, currentPage } = useSelector(store => store.player);
     const [view, setToggle] = useState(false);
     const dispatch = useDispatch();
-    const playOneSong = () => {
-        dispatch(changeTogglee(currentIndex, songList ));
+    const playOneSong = (krg) => {
+        dispatch(setCurrentIndex({currentIndex : krg, currentPlayer : songList }));
+        if(currentPage !== id) dispatch(setCurrentPage(id));
     }
     const pauseSong = ()=> {
-        dispatch(changeTogglee(currentIndex));
+        if(currentPage !== id) dispatch(setCurrentPage(''));
         dispatch(setVisible(false));
     }
     return (
@@ -23,16 +24,15 @@ export const Card = ({item, currentIndex, toggler}) => {
                     {view && (
                         <Box position={'absolute'} top={4} left={4} cursor="pointer">
                             {
-                                toggler ?
+                                currentPage === id && i === currentIndex && visible ?
                                 <MdPauseCircleFilled color={'orange'}  size={'40px'} onClick={() => pauseSong()}/>
-                                
-                                :
-                                <AiFillPlayCircle color={'orange'}  size={'40px'} onClick={() => playOneSong()}/>
+                                    :
+                                <AiFillPlayCircle color={'orange'}  size={'40px'} onClick={() => playOneSong(i)}/>
                             }
                         </Box>
 
                     )}
-                    <Image src={item.cover} height='100%'   width={'70px'}/>
+                    <Image src={item.cover} height='100%' alt="cover Img" width={'70px'}/>
                 </Box>
                 <Text ml={4}>{item.name}</Text>
             </Box>

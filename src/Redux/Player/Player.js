@@ -9,12 +9,12 @@ const slice = createSlice({
         visible : false,
         songList : JSON.parse(localStorage.getItem('click')) || [],
         currentIndex : 0,
-        toggleList : [],
+        currentPage : "",
         loginSignIn : false,
     },
     reducers : {
-        setToggleList : (state, action) => {
-            state.toggleList = action.payload;
+        setCurrentPage : (state, action) => {
+            state.currentPage = action.payload;
         },
         setLogSign : (state, action) => {
             state.loginSignIn = action.payload;
@@ -23,14 +23,6 @@ const slice = createSlice({
             state.currentPlayer = action.payload;
             state.visible = true;
             state.currentIndex = 0;
-
-        },
-        setVisible : (state , action) => {
-            state.visible = action.payload;
-        },
-        removeSongs : (state, action) => {
-            localStorage.removeItem('click');
-            state.currentPlayer = [];
         },
         setSongList : (state, action) => {
             state.songList = action.payload;
@@ -38,37 +30,25 @@ const slice = createSlice({
         setCurrentIndex : (state, action) => {
             state.currentIndex = action.payload.currentIndex;
             state.visible = true;
-            state.currentPlayer = action.payload.currentPlayer;
+            if(action.payload.currentPlayer) state.currentPlayer = action.payload.currentPlayer;
         },
         setOnlyIndex : (state, action) => {
             state.currentIndex = action.payload;
+        },
+        setVisible : (state , action) => {
+            state.visible = action.payload;
+        },
+        removeSongs : (state, action) => {
+            localStorage.removeItem('click');
+            state.currentPlayer = [];
         }
     },
 })
 
-export const { setLogSign, setToggleList, setOnlyIndex, setCurrentPlayer, setVisible, removeSongs, setSongList, setCurrentIndex } = slice.actions;
+export const { setCurrentPage, setLogSign, setOnlyIndex, setCurrentPlayer, setVisible, removeSongs, setSongList, setCurrentIndex } = slice.actions;
 export const setSongListInLocal = (song) => async(dispatch) => {
     localStorage.setItem('click', JSON.stringify(song));
     dispatch(setSongList(song));
-}
-export const setTogglerFunction = (list) => (dispatch) => {
-    const newList = new Array(list.length).fill(false);
-    dispatch(setToggleList(newList));
-}
-export const changeTogglee = (currentIndex, songList) => (dispatch, getState) => {
-    const list = getState().player.toggleList;
-    const newList = list.map((item, index) => {
-        if(index === currentIndex) {
-            // if(item) return item = false;
-            return item = !item;
-        } else {
-            return item = false;
-        }
-    })
-    dispatch(setToggleList(newList));
-    if(songList){
-        dispatch(setCurrentIndex({currentIndex : currentIndex, currentPlayer : songList }));
-    }
 }
 export const setPlay = (list) => (dispatch) => {
     dispatch(setCurrentPlayer(list));
