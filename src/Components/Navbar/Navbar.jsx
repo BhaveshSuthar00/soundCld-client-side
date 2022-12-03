@@ -17,6 +17,9 @@ const Navbar = () => {
   const { user, loggedOut } = useSelector((store)=> store.login);
   const dispatch = useDispatch();
   const [searchArtist, setSearchArtist] = useState('');
+  const handleSongPlaylist = (data) => {
+    history('/playlist/' + data);
+  };
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     history(`/searchpage/everything?q=${searchArtist}`)
@@ -34,8 +37,8 @@ const Navbar = () => {
               <Text ml={5}>
                 <Link to="/">Home</Link>
               </Text>
-              <Text ml={5}>
-                Stream
+              <Text ml={5} cursor={"pointer"} onClick={() => handleSongPlaylist('likedSongs')}>
+                Liked Songs
               </Text>
               <Text ml={5}>
                 <Link to="/library">Library</Link>

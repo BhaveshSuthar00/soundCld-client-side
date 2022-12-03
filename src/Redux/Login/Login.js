@@ -19,7 +19,6 @@ const slice = createSlice({
             cookies.remove('soundCloud', {path : '/'})
         }, 
         addLogin : (state, { payload }) => {
-            console.log('inside the reducer addLogin', payload)
             state.user = payload;
             state.loggedIn = true;
             state.loggedOut = false;

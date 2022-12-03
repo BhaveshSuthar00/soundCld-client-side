@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from "react-redux"
 import { Card } from "./Card";
 import { MdPauseCircleFilled } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { setCurrentPage, setPlay, setSongList, setVisible } from "../../Redux/Player/Player";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BaseURL } from "../../constants";
 import { useCallback } from "react";
+import { setLikedSongs } from "../../Redux/Liked/LikedSong";
 export const PlayList = () => {
     
     const { songList, currentIndex, currentPage } = useSelector(store => store.player);
-    
+    const { user } = useSelector(store => store.login);
     const [loading, setLoading] = useState(true);
-
+    const [show , setShow] = useState(false);
     const { id } = useParams();
     
     const dispatch = useDispatch();
@@ -25,6 +26,19 @@ export const PlayList = () => {
     }
     const getPlaylist = async() => {
         try {
+            if(id==='likedSongs'){
+                const repsonse = await axios.get(`${BaseURL}/liked/${user._id}`);
+                if(repsonse.data.message || repsonse.data.songs.length === 0){
+                    setShow(true)
+                    setLoading(false);
+
+                    return;
+                }
+                dispatch(setSongList(repsonse.data.songs));
+                dispatch(setLikedSongs(repsonse.data));
+                setLoading(false);
+                return;
+            } 
             const response = await axios.get(`${BaseURL}/list/${id.toLowerCase()}`);
             dispatch(setSongList(response.data));
             setLoading(false);
@@ -56,6 +70,11 @@ export const PlayList = () => {
         playListRef();
     }, [playListRef]);
     if(loading) return <></>;
+    if(show) {
+        return <Box display={'flex'} justifyContent='center' mt={5}> 
+            <Text fontSize={'4xl'}>You don't have any song, <Link style={{color : "blue", textDecoration : "underline"}} to={'/'}>Go back to home page and add Songs</Link></Text>
+        </Box>
+    }
     return (
         <Box m={8} ml='auto' mr='auto' width={'80%'} boxShadow='lg'>
             <Box display={'flex'} w={'full'}  
@@ -112,7 +131,7 @@ export const PlayList = () => {
             <Box p={1} mt={4} mb={4}>
                 {
                     songList && songList.map((item, index) => (
-                        <Card item={item} id={id} key={item._id} i={index} />
+                        <Card item={item} id={id} key={item._id} i={index} currentPageParent={id}/>
                     )) 
                 }
             </Box>

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import History from './History/History'
+import LikedSong from './Liked/LikedSong'
 import Login from './Login/Login'
 import Player from './Player/Player'
 
@@ -7,7 +8,8 @@ export const store = configureStore({
     reducer: {
         login : Login,
         history : History,
-        player : Player
+        player : Player,
+        liked : LikedSong
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck : false

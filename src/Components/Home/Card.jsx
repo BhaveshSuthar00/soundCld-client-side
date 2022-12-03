@@ -1,21 +1,33 @@
-import { Box, Image, Text } from "@chakra-ui/react"
+import { Box, IconButton, Image, Text } from "@chakra-ui/react"
 import { MdPauseCircleFilled } from 'react-icons/md';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentIndex, setCurrentPage, setVisible } from "../../Redux/Player/Player";
 import { useState } from "react";
-
-export const Card = ({item, id, i}) => {
+import { BsHeart, BsHeartFill } from 'react-icons/bs'
+import { addToLikeSongs, remoeSongFromLikeList } from "../../Redux/Liked/LikedSong";
+export const Card = ({item, id, i, currentPageParent}) => {
     const { songList, currentIndex, visible, currentPage } = useSelector(store => store.player);
+    const { loggedIn, user } = useSelector(store => store.login);
+    const { songIds } = useSelector(store => store.liked);
     const [view, setToggle] = useState(false);
     const dispatch = useDispatch();
     const playOneSong = (krg) => {
         dispatch(setCurrentIndex({currentIndex : krg, currentPlayer : songList }));
         if(currentPage !== id) dispatch(setCurrentPage(id));
     }
+    const heartClicked = (userId, songId) => {
+        dispatch(addToLikeSongs(userId, songId));
+    }
+    const removeLikedSong = (userId, songId) => {
+        dispatch(remoeSongFromLikeList(userId, songId));
+    }
     const pauseSong = ()=> {
         if(currentPage !== id) dispatch(setCurrentPage(''));
         dispatch(setVisible(false));
+    }
+    if(currentPageParent === 'likedSongs' && !songIds.includes(item._id)){
+        return <></>
     }
     return (
         <>
@@ -34,7 +46,12 @@ export const Card = ({item, id, i}) => {
                     )}
                     <Image src={item.cover} height='100%' alt="cover Img" width={'70px'}/>
                 </Box>
-                <Text ml={4}>{item.name}</Text>
+                <Box display={'flex'} flex='1' justifyContent='space-between'>
+                    <Text ml={4}>{item.name}</Text>
+                    {
+                        loggedIn ? <IconButton style={{transition : "all 0.5s"}} icon={!songIds.includes(item._id) ? <BsHeart /> : <BsHeartFill />} color={!songIds.includes(item._id) ? 'black' : 'red'} bgColor={'transparent'} onClick={() => !songIds.includes(item._id) ? heartClicked(user._id, item._id) : removeLikedSong(user._id, item._id)}/> : null
+                    }
+                </Box>
             </Box>
         </>
     )
