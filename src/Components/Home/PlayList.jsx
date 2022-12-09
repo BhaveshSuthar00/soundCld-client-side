@@ -9,11 +9,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BaseURL } from "../../constants";
 import { useCallback } from "react";
-import { setLikedSongs } from "../../Redux/Liked/LikedSong";
+import Song from '../../Assets/song.svg'
+import { getAllLikedSongs } from "../../Redux/Liked/LikedSong";
 export const PlayList = () => {
     
     const { songList, currentIndex, currentPage } = useSelector(store => store.player);
     const { user } = useSelector(store => store.login);
+    const { songIds } = useSelector(store => store.liked);
     const [loading, setLoading] = useState(true);
     const [show , setShow] = useState(false);
     const { id } = useParams();
@@ -27,22 +29,19 @@ export const PlayList = () => {
     const getPlaylist = async() => {
         try {
             if(id==='likedSongs'){
-                const repsonse = await axios.get(`${BaseURL}/liked/${user._id}`);
-                if(repsonse.data.message || repsonse.data.songs.length === 0){
-                    setShow(true)
+                let response = await dispatch(getAllLikedSongs(user));
+                if(response){
                     setLoading(false);
-
                     return;
+                } else {
+                    setShow(true);
+                    setLoading(false);
                 }
-                dispatch(setSongList(repsonse.data.songs));
-                dispatch(setLikedSongs(repsonse.data));
-                setLoading(false);
                 return;
             } 
             const response = await axios.get(`${BaseURL}/list/${id.toLowerCase()}`);
             dispatch(setSongList(response.data));
             setLoading(false);
-            // if(currentIndex > response.data.length) dispatch(setOnlyIndex(0));
         }
         catch (err) {
             console.log(err);
@@ -61,7 +60,9 @@ export const PlayList = () => {
     }
     
     const colorRef = useCallback(selectRandom, []);
-    
+    const setLoaderFunction = (value) => {
+        setLoading(value);
+    }
     // useEffect(()=> {
     //     dispatch(setCurrentIndex({ currentIndex : currentIndex }));
     // }, [currentIndex])
@@ -69,7 +70,13 @@ export const PlayList = () => {
     useEffect(()=> {
         playListRef();
     }, [playListRef]);
-    if(loading) return <></>;
+    if(loading) return (
+        <>
+            <Box display={'flex'} >
+                <Image ml={'auto'} mr='auto' mt={Math.floor(window.innerHeight / 4)} src={Song}  w='auto'/>
+            </Box>
+        </>
+    );
     if(show) {
         return <Box display={'flex'} justifyContent='center' mt={5}> 
             <Text fontSize={'4xl'}>You don't have any song, <Link style={{color : "blue", textDecoration : "underline"}} to={'/'}>Go back to home page and add Songs</Link></Text>
@@ -95,13 +102,17 @@ export const PlayList = () => {
                                 :
                                 <MdPauseCircleFilled color={'orange'} size={'5rem'} onClick={pauseAll}  /> 
                             }  */}
-                            {
-                                currentPage !== id &&  currentIndex >= 0 ? 
-                                <AiFillPlayCircle color={'orange'}  size={'5rem'} onClick={playAll}  /> 
-                                :
-                                <MdPauseCircleFilled color={'orange'} size={'5rem'} onClick={pauseAll}  /> 
-                            } 
-                            <Text fontSize={'xx-large'} fontWeight='black' ml={4}> { id.toUpperCase() } </Text>
+                            <Box>
+                                {
+                                    currentPage !== id &&  currentIndex >= 0 ? 
+                                    <AiFillPlayCircle color={'orange'}  size={'4rem'} onClick={playAll}  /> 
+                                    :
+                                    <MdPauseCircleFilled color={'orange'} size={'4rem'} onClick={pauseAll}  /> 
+                                } 
+                            </Box>
+                            <Box>
+                                <Text fontSize={'xx-large'} fontWeight='black' ml={4}> { id.toUpperCase() } </Text>
+                            </Box>
                         </Box>
                         {
                             currentIndex < songList.length && currentIndex >= 0 && (
@@ -111,9 +122,9 @@ export const PlayList = () => {
                     </Box>
                         {
                             currentIndex < songList.length && currentIndex >= 0 && (
-                                <Box border="1px solid black" bgColor={'blackAlpha.700'} p={8} ml={4} borderRadius={'50%'} width="12%">
-                                    <Text color={'white'}>Tracks</Text>
-                                    <Text color={'white'} ml="25%">{songList.length}</Text>
+                                <Box border="1px solid black" bgColor={'blackAlpha.700'} ml={5} display='flex' flexDir={'column'} p={'10px'}   borderRadius={'50%'} width="100px" height={'100px'}>
+                                    <Text color={'white'} textAlign='center' mt='auto' mb='auto'>Tracks</Text>
+                                    <Text color={'white'} textAlign='center' mb="auto">{id === 'likedSongs' ? songIds.length :songList.length}</Text>
                                 </Box>
                             )
                         }
@@ -131,7 +142,7 @@ export const PlayList = () => {
             <Box p={1} mt={4} mb={4}>
                 {
                     songList && songList.map((item, index) => (
-                        <Card item={item} id={id} key={item._id} i={index} currentPageParent={id}/>
+                        <Card item={item} setLoading={setLoaderFunction} id={id} key={item._id} i={index} currentPageParent={id}/>
                     )) 
                 }
             </Box>

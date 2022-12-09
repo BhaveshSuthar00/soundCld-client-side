@@ -6,7 +6,7 @@ import { setCurrentIndex, setCurrentPage, setVisible } from "../../Redux/Player/
 import { useState } from "react";
 import { BsHeart, BsHeartFill } from 'react-icons/bs'
 import { addToLikeSongs, remoeSongFromLikeList } from "../../Redux/Liked/LikedSong";
-export const Card = ({item, id, i, currentPageParent}) => {
+export const Card = ({item, id, i, currentPageParent, setLoading}) => {
     const { songList, currentIndex, visible, currentPage } = useSelector(store => store.player);
     const { loggedIn, user } = useSelector(store => store.login);
     const { songIds } = useSelector(store => store.liked);
@@ -16,11 +16,15 @@ export const Card = ({item, id, i, currentPageParent}) => {
         dispatch(setCurrentIndex({currentIndex : krg, currentPlayer : songList }));
         if(currentPage !== id) dispatch(setCurrentPage(id));
     }
-    const heartClicked = (userId, songId) => {
-        dispatch(addToLikeSongs(userId, songId));
+    const heartClicked = async(userId, songId) => {
+        setLoading(true);
+        await dispatch(addToLikeSongs(userId, songId));
+        setLoading(false);
     }
-    const removeLikedSong = (userId, songId) => {
-        dispatch(remoeSongFromLikeList(userId, songId));
+    const removeLikedSong = async(userId, songId) => {
+        setLoading(true);
+        await dispatch(remoeSongFromLikeList(userId, songId));
+        setLoading(false);
     }
     const pauseSong = ()=> {
         if(currentPage !== id) dispatch(setCurrentPage(''));

@@ -37,9 +37,13 @@ const Navbar = () => {
               <Text ml={5}>
                 <Link to="/">Home</Link>
               </Text>
-              <Text ml={5} cursor={"pointer"} onClick={() => handleSongPlaylist('likedSongs')}>
-                Liked Songs
-              </Text>
+              {
+                !loggedOut && (
+                  <Text ml={5} cursor={"pointer"} onClick={() => handleSongPlaylist('likedSongs')}>
+                    Liked Songs
+                  </Text>
+                )
+              }
               <Text ml={5}>
                 <Link to="/library">Library</Link>
               </Text>
