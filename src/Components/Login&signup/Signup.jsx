@@ -49,15 +49,11 @@ const Signup = () => {
       }
     })
   }
-  // useEffect(()=>{
-  //   let localPlayer = ['value'];
-  //   localStorage.setItem('playerAble', JSON.stringify(localPlayer));
-  // },[])
     return (
-      <Box mt={'auto'} display='flex' h='container.md' bgColor={'gray'}>
+      <Box mt={'auto'} display='flex' h={window.innerHeight} bgColor={'gray'}>
         <Box mt={'auto'} mb='auto' margin={'auto'} w={{base : '24%', lg : '24%', md : '60%', sm : '90%'}} boxShadow='lg' bgColor={'white'} padding={4}>
           <Box textAlign={'end'}>
-            <Button variant={'ghost'} onClick={Goback} _hover={{backgroundColor:"transparent"}}> <GiCrossedBones /> </Button>
+            <Button variant={'ghost'} onClick={Goback} _hover={{backgroundColor:"transparent"}} _focus={{outline : 0}}> <GiCrossedBones /> </Button>
           </Box>
           <Box as='form' display={'flex'} flexDir='column' onSubmit={handleSubmit}>
             <hr className="hr"/>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useMemo} from 'react'
 import { LeftWrapper, ButtonDiv } from './Left'
 import { useNavigate} from 'react-router-dom'
 import { BiSearchAlt2 } from 'react-icons/bi';
@@ -9,7 +9,7 @@ const LeftSide = ({ page , query}) => {
   const handleSearchQuery = (element) => {
     navigate(`/searchpage/${element}?q=${query}`)
   }
-  let array = ['everything', 'track', 'playlist', 'album', 'people']
+  const array = useMemo(()=> ['everything', 'track', 'playlist', 'album', 'people'], []);
   useEffect(()=> {
     for(let i = 0; i < array.length; i++) {
       if(page === array[i]) {
@@ -20,10 +20,9 @@ const LeftSide = ({ page , query}) => {
         let el = document.querySelector(`.${array[i]}`)
         el.style.backgroundColor ='white'
         el.style.color = 'black';
-
       }
     }
-  }, [page])
+  }, [page, array])
   return (
     <LeftWrapper>
       <ButtonDiv className="everything"style={{backgroundColor : '#ff5500', color : 'white'}} onClick={()=>{handleSearchQuery('everything')}}>

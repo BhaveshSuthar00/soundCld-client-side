@@ -2,6 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { BaseURL } from "../../constants";
+import { removeHistory } from "../History/History";
+import { getAllLikedSongs, resetLikedSongs } from "../Liked/LikedSong";
+import { resetPlayer } from "../Player/Player";
 const cookies = new Cookies();
 const userId = cookies.get('soundCloud');
 const slice = createSlice({
@@ -35,6 +38,7 @@ export const apiCallLogin = (formdata) => async (dispatch)=>{
         let req =  await axios.post(`${BaseURL}/user/login/singleuser`,  {email : formdata.email, password : formdata.password})
         cookies.set('soundCloud', req.data, { path : '/', secure : true})
         dispatch(addLogin(req.data));
+        dispatch(getAllLikedSongs(req.data));
     } catch (err) {
         throw new Error(err);
     }    
@@ -45,6 +49,9 @@ export const apiCallLogout = () => {
             window.localStorage.removeItem('userName');
             window.localStorage.removeItem('user');
             dispatch(removeUser());
+            dispatch(removeHistory());
+            dispatch(resetLikedSongs());
+            dispatch(resetPlayer());
         }
         catch(err) {
             console.log(err);

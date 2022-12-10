@@ -10,8 +10,7 @@ import {
   Flex, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, Spacer, Text,
 } from '@chakra-ui/react'
 import { apiCallLogout } from '../../Redux/Login/Login';
-import { removeSongs, setLogSign } from '../../Redux/Player/Player';
-import { removeHistory } from '../../Redux/History/History';
+import { setLogSign } from '../../Redux/Player/Player';
 const Navbar = () => {
   const history = useNavigate();
   const { user, loggedOut } = useSelector((store)=> store.login);
@@ -40,7 +39,7 @@ const Navbar = () => {
               {
                 !loggedOut && (
                   <Text ml={5} cursor={"pointer"} onClick={() => handleSongPlaylist('likedSongs')}>
-                    Liked Songs
+                    Liked
                   </Text>
                 )
               }
@@ -102,8 +101,7 @@ const Navbar = () => {
                 {
                   !loggedOut ? <Text onClick={() => {
                     dispatch(apiCallLogout())
-                    dispatch(removeHistory())
-                    dispatch(removeSongs())
+                    history('/')
                   }}>
                     Log out
                   </Text>

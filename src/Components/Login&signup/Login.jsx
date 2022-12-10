@@ -24,16 +24,11 @@ const Login = ()=> {
     const { id, value } = e.target;
     setFormdata({ ...formdata, [id]: value });
   };
-  // useEffect(()=>{
-  //   let localPlayer = ['value'];
-  //   localStorage.setItem('playerAble', JSON.stringify(localPlayer));
-  // },[])
-  
   return (
-    <Box mt={'auto'} display='flex' h='container.md' bgColor={'gray'}>
+    <Box mt={'auto'} display='flex' h={window.innerHeight} bgColor={'gray'}>
       <Box mt={'auto'} mb='auto' margin={'auto'} w={{base : '30%', lg : '30%', md : '60%', sm : '90%'}} boxShadow='lg' bgColor={'white'} padding={4}>
         <Box textAlign={'end'}>
-          <Button variant={'ghost'} onClick={() => navigate('/')} _hover={{backgroundColor:"transparent"}}> <GiCrossedBones /> </Button>
+          <Button variant={'ghost'} onClick={() => navigate('/')} _focus={{outline : 0}} _hover={{backgroundColor:"transparent"}}> <GiCrossedBones /> </Button>
         </Box>
         <Box as='form' display={'flex'} flexDir='column' onSubmit={handleSubmit}>
           <Button mt={2} disabled={true} colorScheme={'facebook'}>Continue with Facebook</Button>

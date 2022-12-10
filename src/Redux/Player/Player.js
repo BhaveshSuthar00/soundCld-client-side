@@ -41,11 +41,20 @@ const slice = createSlice({
         removeSongs : (state, action) => {
             localStorage.removeItem('click');
             state.currentPlayer = [];
+        },
+        resetPlayer : (state, action) => {
+            state.currentPlayer = [];
+            state.visible = false;
+            state.songList = [];
+            state.loginSignIn = false;
+            state.currentPage = "";
+            state.currentIndex = 0;
+            localStorage.removeItem('click');
         }
     },
 })
 
-export const { setCurrentPage, setLogSign, setOnlyIndex, setCurrentPlayer, setVisible, removeSongs, setSongList, setCurrentIndex } = slice.actions;
+export const { resetPlayer, setCurrentPage, setLogSign, setOnlyIndex, setCurrentPlayer, setVisible, removeSongs, setSongList, setCurrentIndex } = slice.actions;
 export const setSongListInLocal = (song) => async(dispatch) => {
     localStorage.setItem('click', JSON.stringify(song));
     dispatch(setSongList(song));

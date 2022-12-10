@@ -13,11 +13,15 @@ const likedSlice = createSlice({
         setLikedSongs : (state, {payload}) =>{
             state.songs = payload.songs;
             if(payload.songIds) state.songIds = payload.songIds;
+        },
+        resetLikedSongs : (state, {payload}) =>{
+            state.songs  =  [];
+            state.songIds = [];
         }
     }
 })
 
-export const { setLikedSongs } = likedSlice.actions;
+export const { setLikedSongs, resetLikedSongs } = likedSlice.actions;
 export const songIdsFun = (list) => {
     return list.map((item) => item._id);
 }
@@ -29,7 +33,7 @@ export const getAllLikedSongs = (user) => async(dispatch) => {
             // setLoading(false);
             return false;
         }
-        dispatch(setSongList(repsonse.data));
+        dispatch(setSongList(repsonse.data.reverse()));
         const songIds = songIdsFun(repsonse.data)
         dispatch(setLikedSongs({songs : repsonse.data, songIds }));
         return true;

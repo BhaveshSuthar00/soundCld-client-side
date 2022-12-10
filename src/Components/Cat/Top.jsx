@@ -1,37 +1,17 @@
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BaseURL } from "../../constants";
 import { ElementDiv } from "../Home/styleComponents";
 import { v4 as uuid } from 'uuid';
+import { useSelector } from "react-redux";
 export const Top = () => {
   const navigate = useNavigate();
-  const [category, setCategory] = useState([]);
-  const getData = () => {
-    axios
-      .get(`${BaseURL}/api/category/all`)
-      .then((response) => {
-        setCategory(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    };
-  const dataRef = useCallback(getData, []);
+  const { top } = useSelector(store => store.home);
   const handleSongPlaylist = (data) => {
     navigate('/playlist/' + data);
   };  
-  useEffect(() => {
-    dataRef();
-    return(()=> {
-      setCategory([]);
-    })
-  }, [ dataRef ]);
-
   return (
     <>
       {
-        category && category.map((item) => (
+        top && top.map((item) => (
           <ElementDiv key={uuid()}>
             <img
               onClick={() => {

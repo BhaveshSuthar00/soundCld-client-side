@@ -53,7 +53,7 @@ export const Card = ({item, id, i, currentPageParent, setLoading}) => {
                 <Box display={'flex'} flex='1' justifyContent='space-between'>
                     <Text ml={4}>{item.name}</Text>
                     {
-                        loggedIn ? <IconButton style={{transition : "all 0.5s"}} icon={!songIds.includes(item._id) ? <BsHeart /> : <BsHeartFill />} color={!songIds.includes(item._id) ? 'black' : 'red'} bgColor={'transparent'} onClick={() => !songIds.includes(item._id) ? heartClicked(user._id, item._id) : removeLikedSong(user._id, item._id)}/> : null
+                        loggedIn ? <IconButton style={{transition : "all 0.5s"}} variant='ghost' _hover={{bgColor : 'transpanant'}} _active={{bgColor:'transparant'}} _focus={{outline : 0}} icon={!songIds.includes(item._id) ? <BsHeart /> : <BsHeartFill />} color={!songIds.includes(item._id) ? 'black' : 'red'} bgColor={'transparent'} onClick={() => !songIds.includes(item._id) ? heartClicked(user._id, item._id) : removeLikedSong(user._id, item._id)}/> : null
                     }
                 </Box>
             </Box>

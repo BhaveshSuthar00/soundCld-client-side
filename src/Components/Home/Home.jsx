@@ -4,13 +4,18 @@ import { HistoryTracks } from "./History";
 import { HeaderTitleDiv, HomeDiv } from "./styleComponents";
 import { Top } from "../Cat/Top";
 import { Playlist } from "../Cat/Playlist";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLogSign } from "../../Redux/Player/Player";
+import { getAllLikedSongs } from "../../Redux/Liked/LikedSong";
 const Home = () => {
   const dispatch = useDispatch();
+  const { loading } = useSelector(store => store.home);
+  const { user } = useSelector(store => store.login);
   useEffect(() => {
     dispatch(setLogSign(false));
+    if(user._id) dispatch(getAllLikedSongs(user));
   }, [ dispatch ])
+  if(loading) return <></>
   return (
     <>
       <HomeDiv>
