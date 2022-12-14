@@ -16,7 +16,7 @@ const Player = () => {
   return (
     <>
       <ReactJkMusicPlayer
-        defaultVolume={0}
+        defaultVolume={0.5}
         theme={"dark"}
         autoPlay={visible ? true : false}
         onAudioPlay={(e) => handleAddHistory(e)}
